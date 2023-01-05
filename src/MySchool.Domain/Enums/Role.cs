@@ -7,3 +7,4 @@ public enum Role
 	Admin = 666,
 
 }
+
