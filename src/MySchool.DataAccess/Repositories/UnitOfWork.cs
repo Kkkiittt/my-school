@@ -16,11 +16,11 @@ namespace MySchool.DataAccess.Repositories;
 internal class UnitOfWork : IUnitOfWork
 {
 	private readonly AppDbContext _dbContext;
-	public IEmployeeRepository Employees { get; set; }
-	public IArticleRepository Articles { get; set; }
-	public ICharterRepository Charters { get; set; }
-	public IStudentRepository Students { get; set; }
-	public ICommentRepository Comments { get; set; }
+	public IEmployeeRepository Employees { get; }
+	public IArticleRepository Articles { get; }
+	public ICharterRepository Charters { get; }
+	public IStudentRepository Students { get; }
+	public ICommentRepository Comments { get; }
 
 	public UnitOfWork(AppDbContext dbContext)
 	{
