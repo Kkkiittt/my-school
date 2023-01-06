@@ -1,4 +1,4 @@
-﻿using My_School.Domain.Models.Common;
+using My_School.Domain.Models.Common;
 using My_School.Domain.Models.Employees;
 
 namespace My_School.Domain.Entities.Articles;
@@ -14,6 +14,6 @@ public class Article : Auditable
 	public long Views { get; set; }
 
 	public long EmployeeId { get; set; }
-
+  
 	public virtual Employee Employee { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using My_School.Domain.Enums;
+using My_School.Domain.Enums;
 using My_School.Domain.Models.Common;
 
 namespace My_School.Domain.Models.Employees;
@@ -17,6 +17,6 @@ public class Employee : BaseEntity
 	public Role Role { get; set; } = 0;
 
 	public string Image { get; set; } = string.Empty;
-
-
+  
+  public DateTime Acted { get; set; }
 }
