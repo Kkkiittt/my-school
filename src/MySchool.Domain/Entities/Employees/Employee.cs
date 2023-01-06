@@ -23,6 +23,6 @@ namespace My_School.Domain.Models.Employees
 
         public string Image { get; set; } = string.Empty;
 
-
+        public DateTime Acted { get; set; }
     }
 }

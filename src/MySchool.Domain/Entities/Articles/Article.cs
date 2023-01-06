@@ -21,5 +21,6 @@ namespace My_School.Domain.Entities.Articles
         public long EmployeeId { get; set; }
 
         public virtual Employee Employee { get; set; } 
+
     }
 }
