@@ -8,15 +8,15 @@ namespace MySchool.DataAccess.Interfaces;
 
 public interface IUnitOfWork
 {
-	public IEmployeeRepository Employees { get; set; }
+	public IEmployeeRepository Employees { get; }
 
-	public IArticleRepository Articles { get; set; }
+	public IArticleRepository Articles { get; }
 
-	public ICharterRepository Charters { get; set; }
+	public ICharterRepository Charters { get; }
 
-	public IStudentRepository Students { get; set; }
+	public IStudentRepository Students { get; }
 
-	public ICommentRepository Comments { get; set; }
+	public ICommentRepository Comments { get; }
 
 	public Task<int> SaveChanges();
 
