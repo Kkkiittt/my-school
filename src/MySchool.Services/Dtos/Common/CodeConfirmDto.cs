@@ -2,9 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace MySchool.Services.Dtos.Commons;
 
-public class PhoneConfirmDto
+namespace MySchool.Services.Dtos.Common;
+
+public class CodeConfirmDto
 {
 	[Required]
 	public int Id { get; set; }

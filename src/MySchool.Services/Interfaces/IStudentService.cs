@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.ViewModels.Students;
 
