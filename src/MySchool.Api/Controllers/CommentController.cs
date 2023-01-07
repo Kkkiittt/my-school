@@ -7,7 +7,7 @@ using MySchool.Services.ViewModels.Comments;
 
 namespace My_School.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/comment")]
 [ApiController]
 public class CommentController : ControllerBase
 {
