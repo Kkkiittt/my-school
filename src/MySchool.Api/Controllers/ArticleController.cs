@@ -37,7 +37,7 @@ namespace My_School.Controllers
             return Ok(await _articleService.GetById(id));
         }
 
-        [HttpGet("GetAllArticls")]
+        [HttpGet("GetAllArticles")]
         public async Task<IActionResult> GetAllAsync()
         {
             return Ok(await _articleService.GetAll());

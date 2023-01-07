@@ -18,19 +18,19 @@ public class CommentController : ControllerBase
 		_commentService = commentService;
 	}
 
-	[HttpPost("CommnetCreate")]
+	[HttpPost("CommentCreate")]
 	public async Task<IActionResult> CreateAsync([FromForm] CommentCreateDto dto)
 	{
 		return Ok(await _commentService.CreateAsync(dto));
 	}
 
-	[HttpGet("GetCommnetByArticle")]
+	[HttpGet("GetCommentByArticle")]
 	public async Task<IActionResult> GetByArticleAsync(long articleId)
 	{
 		return Ok(await _commentService.GetByArticleAsync(articleId));
 	}
 
-	[HttpDelete("CommnetDelete")]
+	[HttpDelete("CommentDelete")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _commentService.DeleteByIdAsyc(id));
