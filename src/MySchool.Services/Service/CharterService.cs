@@ -1,11 +1,16 @@
-﻿using MySchool.Services.Dtos.Charters;
+﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Dtos.Charters;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels.Charters;
 
 namespace MySchool.Services.Service;
 
-public class CharterService : ICharterService
+public class CharterService : BasicService, ICharterService
 {
+	public CharterService(IUnitOfWork repository) : base(repository)
+	{
+	}
+
 	public Task<bool> CreateAsync(CharterCreateDto dto)
 	{
 		throw new NotImplementedException();

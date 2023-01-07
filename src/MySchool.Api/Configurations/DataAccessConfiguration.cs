@@ -12,6 +12,6 @@ public static class DataAccessConfiguration
 	{
 		string connectionString = builder.Configuration.GetConnectionString("DataBaseConnection");
 		_ = builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
-		builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+		_ = builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 	}
 }

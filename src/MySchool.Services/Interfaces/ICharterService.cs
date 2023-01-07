@@ -13,5 +13,5 @@ public interface ICharterService
 
 	public Task<IEnumerable<CharterShortViewModel>> GetByStudent(long studentId);
 
-	public Task<CharterFullViewModel> GetById (long id);
+	public Task<CharterFullViewModel> GetById(long id);
 }

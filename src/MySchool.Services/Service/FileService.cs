@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+
 using MySchool.Services.Common.Helpers;
 using MySchool.Services.Common.Interfaces;
 namespace MySchool.Services.Service;
@@ -19,7 +20,7 @@ public class FileService : IFileService
 		string imageName = ImageHelper.MakeImageName(image.FileName);
 
 		string imagePath = Path.Combine(_rootpath, images, imageName);
-		var stream = new FileStream(imagePath, FileMode.Create);
+		FileStream stream = new FileStream(imagePath, FileMode.Create);
 		try
 		{
 			await image.CopyToAsync(stream);

@@ -1,11 +1,17 @@
-﻿using MySchool.Services.Dtos.Students;
+﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Service;
 
-public class StudentService : IStudentService
+public class StudentService : BasicService, IStudentService
 {
+	public StudentService(IUnitOfWork repository) : base(repository)
+	{
+
+	}
+
 	public Task<bool> DeleteByIdAsync(long id)
 	{
 		throw new NotImplementedException();

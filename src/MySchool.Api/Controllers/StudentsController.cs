@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
 
 namespace My_School.Controllers
 {
-    [Route("api/students")]
-    [ApiController]
-    public class StudentsController : ControllerBase
-    {
-        private readonly IStudentService _studentService;
+	[Route("api/students")]
+	[ApiController]
+	public class StudentsController : ControllerBase
+	{
+		private readonly IStudentService _studentService;
 
-        public StudentsController(IStudentService studentService)
-        {
-            this._studentService = studentService;
-        }
+		public StudentsController(IStudentService studentService)
+		{
+			_studentService = studentService;
+		}
 
         [HttpPost("StudentRegister")]
         public async Task<IActionResult> RegisterAsync([FromForm] StudentRegisterDto dto)
@@ -32,6 +32,7 @@ namespace My_School.Controllers
 		public async Task<IActionResult> DeleteByIdAsync(long id)
 		{
 			return Ok(await _studentService.DeleteByIdAsync(id));
+
 		}
 	}
 }

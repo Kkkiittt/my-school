@@ -1,11 +1,16 @@
-﻿using MySchool.Services.Dtos.Comments;
+﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.Service;
 
-public class CommentService : ICommentService
+public class CommentService : BasicService, ICommentService
 {
+	public CommentService(IUnitOfWork repository) : base(repository)
+	{
+	}
+
 	public Task<bool> CreateAsync(CommentCreateDto dto)
 	{
 		throw new NotImplementedException();
