@@ -1,7 +1,9 @@
+using My_School.Domain.Models.Common;
+
 namespace MySchool.Services.ViewModels;
 
 
-public class ArticleFullViewModel
+public class ArticleFullViewModel : BaseEntity
 {
 	public string HTML { get; set; } = string.Empty;
 

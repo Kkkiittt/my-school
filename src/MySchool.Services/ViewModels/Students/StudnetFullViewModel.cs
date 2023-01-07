@@ -1,8 +1,9 @@
-﻿using MySchool.Services.ViewModels.Charters;
+﻿using My_School.Domain.Models.Common;
+using MySchool.Services.ViewModels.Charters;
 
 namespace MySchool.Services.ViewModels.Students;
 
-public class StudnetFullViewModel
+public class StudnetFullViewModel : BaseEntity
 {
 	public string Info { get; set; } = string.Empty;
 
