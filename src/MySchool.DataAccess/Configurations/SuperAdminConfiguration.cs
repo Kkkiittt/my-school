@@ -14,11 +14,12 @@ public class SuperAdminConfiguration : IEntityTypeConfiguration<Employee>
 		{
 			Id = 1,
 			Name = "Admin",
-			Password = "eab774a782c906cb9b95749769ae2b99fa1891b02837204a6a0a55bee6fe280c",
-			Phone = "+998930090415",
+			Password = "a7029aeb06f181e9116ea8af2b80d7b3ffec0691f44aa58967d7f6ba5adc95d9",
+			Phone = "998930090415",
 			PhoneVerified = true,
 			Role = Role.Admin,
-			Image = ""
+			Image = "",
+			Acted = default
 		}
 		);
 	}
