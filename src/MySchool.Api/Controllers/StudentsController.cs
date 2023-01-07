@@ -21,5 +21,17 @@ namespace My_School.Controllers
         {
             return Ok(await _studentService.RegisterAsync(dto));
         }
-    }
+
+        [HttpPost("StudentLogin")]
+		public async Task<IActionResult> LoginAsync(StudentLoginDto dto)
+        {
+            return Ok(await _studentService.LoginAsync(dto));
+        }
+
+		[HttpDelete("DeleteStudent")]
+		public async Task<IActionResult> DeleteByIdAsync(long id)
+		{
+			return Ok(await _studentService.DeleteByIdAsync(id));
+		}
+	}
 }
