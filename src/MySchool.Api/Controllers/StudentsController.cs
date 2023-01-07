@@ -5,7 +5,7 @@ using MySchool.Services.Interfaces;
 
 namespace My_School.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/students")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace My_School.Controllers
             this._studentService = studentService;
         }
 
-        [HttpPost("Student Register")]
+        [HttpPost("StudentRegister")]
         public async Task<IActionResult> RegisterAsync([FromForm] StudentRegisterDto dto)
         {
             return Ok(await _studentService.RegisterAsync(dto));
