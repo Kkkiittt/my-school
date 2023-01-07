@@ -1,4 +1,4 @@
-﻿namespace MySchool.Services.ViewModels.Articles;
+namespace MySchool.Services.ViewModels.Articles;
 
 public class ArticleShortViewModel
 {
