@@ -1,4 +1,4 @@
-﻿namespace MySchool.Services.ViewModels.Comments;
+namespace MySchool.Services.ViewModels.Comments;
 
 public class CommentViewModel
 {

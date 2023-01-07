@@ -1,4 +1,4 @@
-﻿namespace MySchool.Services.ViewModels.Students;
+namespace MySchool.Services.ViewModels.Students;
 
 public class StudnetLoginViewModel
 {

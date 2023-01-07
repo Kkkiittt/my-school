@@ -1,4 +1,4 @@
-﻿namespace MySchool.Services.ViewModels.Teachers;
+namespace MySchool.Services.ViewModels.Teachers;
 
 public class TeacherSignViewModel
 {
