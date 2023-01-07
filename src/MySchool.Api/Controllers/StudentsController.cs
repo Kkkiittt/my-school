@@ -23,7 +23,7 @@ namespace My_School.Controllers
         }
 
         [HttpPost("StudentLogin")]
-		public async Task<IActionResult> LoginAsync(StudentLoginDto dto)
+		public async Task<IActionResult> LoginAsync([FromForm]StudentLoginDto dto)
         {
             return Ok(await _studentService.LoginAsync(dto));
         }
