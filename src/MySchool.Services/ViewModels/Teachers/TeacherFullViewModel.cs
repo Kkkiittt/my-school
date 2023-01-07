@@ -1,11 +1,11 @@
 
 using My_School.Domain.Enums;
-
+using My_School.Domain.Models.Common;
 using MySchool.Services.ViewModels.Articles;
 
 namespace MySchool.Services.ViewModels.Teachers;
 
-public class TeacherFullViewModel
+public class TeacherFullViewModel : BaseEntity
 {
 
 	public string Name { get; set; } = string.Empty;

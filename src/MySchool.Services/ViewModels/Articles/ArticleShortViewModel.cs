@@ -1,6 +1,8 @@
+using My_School.Domain.Models.Common;
+
 namespace MySchool.Services.ViewModels.Articles;
 
-public class ArticleShortViewModel
+public class ArticleShortViewModel : BaseEntity
 {
     public string Title { get; set; } = string.Empty;
 

@@ -1,6 +1,8 @@
-﻿namespace MySchool.Services.ViewModels.Charters;
+﻿using My_School.Domain.Models.Common;
 
-public class CharterShortViewModel
+namespace MySchool.Services.ViewModels.Charters;
+
+public class CharterShortViewModel : BaseEntity
 {
 	public DateTime Created { get; set; }
 }

@@ -1,6 +1,8 @@
-﻿namespace MySchool.Services.ViewModels.Students;
+﻿using My_School.Domain.Models.Common;
 
-public class StudentShortViewModel
+namespace MySchool.Services.ViewModels.Students;
+
+public class StudentShortViewModel : BaseEntity
 {
 	public string Info { get; set; } = string.Empty;
 

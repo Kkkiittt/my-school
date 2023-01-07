@@ -1,6 +1,8 @@
-﻿namespace MySchool.Services.ViewModels.Common;
+﻿using My_School.Domain.Models.Common;
 
-public class OverallViewModel
+namespace MySchool.Services.ViewModels.Common;
+
+public class OverallViewModel : BaseEntity
 {
     public long Teachers { get; set; }
 
