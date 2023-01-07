@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace MySchool.Services.Dtos.Common;
+namespace MySchool.Services.Dtos.Commons;
 
 public class PhoneConfirmDto
 {
