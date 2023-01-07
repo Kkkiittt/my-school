@@ -7,7 +7,7 @@ public interface ICommentService
 {
 	public Task<bool> CreateAsync(CommentCreateDto dto);
 
-	public Task<List<CommentViewModel>> GetByArticleAsync(int articleId);
+	public Task<List<CommentViewModel>> GetByArticleAsync(long articleId);
 
-	public Task<bool> DeleteByIdAsyc(int articleId);
+	public Task<bool> DeleteByIdAsyc(long articleId);
 }
