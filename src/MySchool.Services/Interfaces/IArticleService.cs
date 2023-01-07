@@ -15,6 +15,4 @@ public interface IArticleService
 	public Task<IEnumerable<ArticleShortViewModel>> GetAll();
 
 	public Task<IEnumerable<ArticleShortViewModel>> GetByAuthor(long authorId);
-
-
 }
