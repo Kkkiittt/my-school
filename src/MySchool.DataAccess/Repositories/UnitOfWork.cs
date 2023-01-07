@@ -13,7 +13,7 @@ using MySchool.DataAccess.Repositories.Students;
 
 namespace MySchool.DataAccess.Repositories;
 
-internal class UnitOfWork : IUnitOfWork
+public class UnitOfWork : IUnitOfWork
 {
 	private readonly AppDbContext _dbContext;
 	public IEmployeeRepository Employees { get; }
