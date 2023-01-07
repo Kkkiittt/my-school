@@ -19,8 +19,4 @@
     <ProjectReference Include="..\MySchool.DataAccess\MySchool.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Charters\" />
-  </ItemGroup>
-
 </Project>
