@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MySchool.Services.ViewModels;
 
-namespace MySchool.Services.ViewModels.Articles
+public class ArticleFullViewModel
 {
-    public class ArticleFullViewModel
-    {
-        public string HTML { get; set; }
+	public string HTML { get; set; } = string.Empty;
 
-        public string AuthorName { get; set; }
+	public string AuthorName { get; set; } = string.Empty;
 
-        public string AuthorImage { get; set; }
+	public string AuthorImage { get; set; } = string.Empty;
 
-        public long Views { get; set; }
+	public long Views { get; set; }
 
-        public string Title { get; set; }
+	public string Title { get; set; } = string.Empty;
 
-        public string Comments { get; set; }
+	public string Comments { get; set; }= string.Empty;
 
-        public DateTime Created { get; set; }
-    }
+	public DateTime Created { get; set; }
 }

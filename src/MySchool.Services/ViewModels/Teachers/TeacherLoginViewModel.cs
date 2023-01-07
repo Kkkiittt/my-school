@@ -8,7 +8,7 @@ namespace MySchool.Services.ViewModels.Teachers
 {
     public class TeacherLoginViewModel
     {
-        public string Code { get; set; }
+        public int Code { get; set; }
 
         public string Message { get; set; }
     }
