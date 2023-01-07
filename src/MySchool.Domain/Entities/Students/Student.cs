@@ -8,7 +8,7 @@ public class Student : BaseEntity
 
 	public string Info { get; set; } = string.Empty;
 
-  public bool Studying { get; set; } = true;
+	public bool Studying { get; set; } = true;
 
-  public DateTime Acted { get; set; } 
+	public DateTime Acted { get; set; }
 }
