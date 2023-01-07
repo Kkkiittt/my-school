@@ -6,7 +6,7 @@ namespace MySchool.Services.Dtos.Charters;
 
 public class CharterCreateDto
 {
-	public IFormFile? Image{ get; set; }
+	public IFormFile? Image { get; set; }
 	[Required]
-	public int StudentId{ get; set; }
+	public int StudentId { get; set; }
 }

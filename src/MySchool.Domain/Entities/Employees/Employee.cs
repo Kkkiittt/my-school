@@ -17,6 +17,6 @@ public class Employee : BaseEntity
 	public Role Role { get; set; } = 0;
 
 	public string Image { get; set; } = string.Empty;
-  
-  public DateTime Acted { get; set; }
+
+	public DateTime Acted { get; set; }
 }
