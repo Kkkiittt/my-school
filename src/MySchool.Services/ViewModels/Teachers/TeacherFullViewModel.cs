@@ -1,4 +1,4 @@
-﻿
+
 using My_School.Domain.Enums;
 
 using MySchool.Services.ViewModels.Articles;
@@ -15,5 +15,4 @@ public class TeacherFullViewModel
 	public Role Role { get; set; }
 
 	public List<ArticleShortViewModel> Articles { get; set; } = new();
-
 }
