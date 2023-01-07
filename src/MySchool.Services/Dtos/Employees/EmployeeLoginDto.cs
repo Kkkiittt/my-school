@@ -6,7 +6,7 @@ namespace MySchool.Services.Dtos.Employees;
 
 public class EmployeeLoginDto
 {
-    [Required]
+    [Required, Phone]
     public string Phone { get; set; } = string.Empty;
     [Required, MaxLength(16), MinLength(8)]
     public string Password { get; set; } = string.Empty;
