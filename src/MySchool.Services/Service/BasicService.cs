@@ -11,12 +11,14 @@ public class BasicService
 	protected IHasher _hasher { get; set; }
 	protected IViewModelHelper _viewModelHelper { get; set; }
 	protected IDtoHelper _dtoHelper { get; set; }
-	public BasicService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper)
+	protected IAuthManager _authManager { get; set; }
+	public BasicService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager)
 	{
 		_repository = repository;
 		_filer = filer;
 		_hasher = hasher;
 		_viewModelHelper = viewModelHelper;
 		_dtoHelper = dtoHelper;
+		_authManager = authManager;
 	}
 }
