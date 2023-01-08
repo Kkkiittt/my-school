@@ -7,4 +7,5 @@ public class OverallViewModel : BaseEntity
 	public long Teachers { get; set; }
 
 	public long Students { get; set; }
+
 }
