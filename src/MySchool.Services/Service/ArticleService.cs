@@ -1,4 +1,5 @@
 ﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels;
@@ -8,7 +9,7 @@ namespace MySchool.Services.Service;
 
 public class ArticleService : GenericService, IArticleService
 {
-	public ArticleService(IUnitOfWork repository) : base(repository)
+	public ArticleService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
 	{
 
 	}
