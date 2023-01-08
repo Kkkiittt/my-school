@@ -14,6 +14,7 @@ public class StudentShortViewModel : BaseEntity
 	{
 		return new StudentShortViewModel()
 		{
+			Id = entity.Id,
 			Info = entity.Info,
 			Studying = entity.Studying
 		};

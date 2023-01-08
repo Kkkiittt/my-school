@@ -19,6 +19,7 @@ public class StudentFullViewModel : BaseEntity
 	{
 		return new StudentFullViewModel()
 		{
+			Id = entity.Id,
 			Info = entity.Info,
 			Studying = entity.Studying
 		};

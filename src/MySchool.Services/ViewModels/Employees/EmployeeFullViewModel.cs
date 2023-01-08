@@ -23,6 +23,7 @@ public class EmployeeFullViewModel : BaseEntity
 	{
 		return new EmployeeFullViewModel()
 		{
+			Id = entity.Id,
 			Name = entity.Name,
 			Phone = entity.Phone,
 			Role = entity.Role

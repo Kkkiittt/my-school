@@ -15,6 +15,7 @@ public class ArticleShortViewModel : BaseEntity
 	{
 		return new ArticleShortViewModel()
 		{
+			Id = entity.Id,
 			Title = entity.Title,
 			Image = entity.Image,
 			Views = entity.Views

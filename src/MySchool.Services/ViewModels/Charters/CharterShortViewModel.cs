@@ -13,6 +13,7 @@ public class CharterShortViewModel : BaseEntity
 	{
 		return new CharterShortViewModel()
 		{
+			Id = entity.Id,
 			Created = entity.CreatedAt,
 			StudentInfo = entity.Student.Info
 		};

@@ -25,6 +25,7 @@ public class ArticleFullViewModel : BaseEntity
 	{
 		return new ArticleFullViewModel()
 		{
+			Id = entity.Id,
 			HTML = entity.HTML,
 			Views = entity.Views,
 			Title = entity.Title,
