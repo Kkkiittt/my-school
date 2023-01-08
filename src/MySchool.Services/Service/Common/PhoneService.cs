@@ -1,4 +1,4 @@
-﻿using MySchool.DataAccess.Interfaces;
+using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Dtos.Common;
 using MySchool.Services.Interfaces.Common;
 
@@ -22,7 +22,6 @@ public class PhoneService : IPhoneService
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
 		int? code = _casher.Get(dto.Id);
-		var code = _casher.Get(dto.Id);
 		if(code == null)
 			return false;
 		if(code != dto.Code)
@@ -44,7 +43,7 @@ public class PhoneService : IPhoneService
 			Random rndm = new Random();
 			int code = rndm.Next(100_000, 999_999);
 			_ = await _smsManager.SendCode(phone, code);
-			_casher.Place(entity.Id, code, 360);
+			_casher.Place(entity.Id, code, 600);
 			return true;
 		}
 		catch
