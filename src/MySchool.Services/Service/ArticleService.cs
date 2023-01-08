@@ -6,7 +6,7 @@ using MySchool.Services.ViewModels.Articles;
 
 namespace MySchool.Services.Service;
 
-public class ArticleService : BasicService, IArticleService
+public class ArticleService : GenericService, IArticleService
 {
 	public ArticleService(IUnitOfWork repository) : base(repository)
 	{
@@ -15,7 +15,7 @@ public class ArticleService : BasicService, IArticleService
 
 	public Task<bool> CreateAsync(ArticleCreateDto dto)
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	public Task<bool> DeleteByIdAsync(long id)
