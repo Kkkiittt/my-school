@@ -14,6 +14,10 @@ public class OverallService : BasicService, IOverallService
 
 	public async Task<OverallViewModel> GetInfo()
 	{
-		throw new NotImplementedException();
+		return new OverallViewModel
+		{
+			Students = _repository.Students.GetAll().Count(x => x.Studying),
+			Teachers = _repository.Employees.GetAll().Count()
+		};
 	}
 }
