@@ -1,9 +1,12 @@
 ﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
+using My_School.Domain.Entities.Comments;
 using My_School.Domain.Entities.Students;
 using My_School.Domain.Models.Employees;
+
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Dtos.Charters;
+using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Dtos.Employees;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces.Common;
@@ -24,7 +27,7 @@ public class DtoHelper
 	public async Task<Article> ToEntity(ArticleCreateDto dto)
 	{
 		Article article = dto;
-		if (dto.Image != null)
+		if(dto.Image != null)
 		{
 			article.Image = await _filer.SaveImageAsync(dto.Image);
 		}
@@ -35,7 +38,7 @@ public class DtoHelper
 	public async Task<Charter> ToEntity(CharterCreateDto dto)
 	{
 		Charter charter = dto;
-		if (dto.Image != null)
+		if(dto.Image != null)
 		{
 			charter.Image = await _filer.SaveImageAsync(dto.Image);
 		}
@@ -44,7 +47,7 @@ public class DtoHelper
 	public async Task<Employee> ToEntity(EmployeeRegisterDto dto)
 	{
 		Employee employee = dto;
-		if (dto.Image != null)
+		if(dto.Image != null)
 		{
 			employee.Image = await _filer.SaveImageAsync(dto.Image);
 		}
@@ -58,5 +61,11 @@ public class DtoHelper
 		Random random = new System.Random();
 		student.Pin = random.Next(100000, 999999).ToString();
 		return student;
+	}
+
+	public async Task<Comment> ToEntity(CommentCreateDto dto)
+	{
+		Comment comment = dto;
+		return comment;
 	}
 }

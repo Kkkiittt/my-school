@@ -2,7 +2,7 @@
 
 namespace MySchool.Services.ViewModels.Common;
 
-public class OverallViewModel : BaseEntity
+public class OverallViewModel
 {
 	public long Teachers { get; set; }
 
