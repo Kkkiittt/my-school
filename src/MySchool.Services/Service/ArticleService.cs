@@ -9,7 +9,7 @@ using MySchool.Services.ViewModels.Articles;
 
 namespace MySchool.Services.Service;
 
-public class ArticleService : GenericService, IArticleService
+public class ArticleService : BasicService, IArticleService
 {
 	public ArticleService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
 	{
@@ -53,6 +53,7 @@ public class ArticleService : GenericService, IArticleService
 	{
 		try
 		{
+			throw new NotImplementedException();
 		}
 		catch
 		{
