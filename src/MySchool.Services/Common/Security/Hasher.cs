@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+using MySchool.Services.Interfaces.Common;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MySchool.Services.Common.Security;
