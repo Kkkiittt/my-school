@@ -5,7 +5,7 @@ using MySchool.Services.Interfaces;
 
 namespace MySchool.Services.Service;
 
-public class EmployeeService : GenericService, IEmployeeService
+public class EmployeeService : BasicService, IEmployeeService
 {
 	public EmployeeService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
 	{

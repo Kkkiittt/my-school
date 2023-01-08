@@ -19,7 +19,6 @@ public class EmployeeRegisterDto
 		{
 			Phone = dto.Phone,
 			Name = dto.Name,
-			Password = dto.Password,
 			Acted = DateTime.MinValue,
 			PhoneVerified = false,
 			Role = Role.Teacher
