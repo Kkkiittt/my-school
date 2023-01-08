@@ -1,4 +1,4 @@
-﻿using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Common;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -16,15 +16,15 @@ public class Hasher : IHasher
 	public string Hash(string password, string salt)
 	{
 		password += salt;
-		var passwordInBytes = Encoding.UTF8.GetBytes(password);
-		var hashInBytes = _engine.ComputeHash(passwordInBytes);
-		var hashInString = Convert.ToBase64String(hashInBytes);
+		byte[] passwordInBytes = Encoding.UTF8.GetBytes(password);
+		byte[] hashInBytes = _engine.ComputeHash(passwordInBytes);
+		string hashInString = Convert.ToBase64String(hashInBytes);
 		return hashInString;
 	}
 
 	public bool Verify(string hash, string password, string salt)
 	{
-		var newHash = Hash(password, salt);
+		string newHash = Hash(password, salt);
 		return newHash == hash;
 	}
 }
