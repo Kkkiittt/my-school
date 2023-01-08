@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
 
+using Microsoft.EntityFrameworkCore;
+
 using My_School.Domain.Models.Common;
 
 using MySchool.DataAccess.DbContexts;
@@ -15,12 +17,12 @@ public class GenericRepository<T> : BaseRepository<T>, IGenericRepository<T> whe
 
 	public IQueryable<T> GetAll()
 	{
-		return _dbSet;
+		return _dbSet.AsNoTracking();
 	}
 
 	public IQueryable<T> Where(Expression<Func<T, bool>> expression)
 	{
-		return _dbSet.Where(expression);
+		return _dbSet.Where(expression).AsNoTracking();
 	}
 
 }
