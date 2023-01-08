@@ -1,7 +1,7 @@
 ﻿using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Common;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Service;
