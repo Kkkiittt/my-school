@@ -1,4 +1,3 @@
-using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Comments;
 using My_School.Domain.Models.Common;
 
@@ -16,6 +15,6 @@ public class CommentViewModel : BaseEntity
 		{
 			Content = entity.Content,
 			StudentName = entity.Student.Info
-	};
-}
+		};
+	}
 }

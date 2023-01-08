@@ -1,9 +1,7 @@
-﻿using My_School.Domain.Entities.Comments;
-using My_School.Domain.Entities.Students;
+﻿using My_School.Domain.Entities.Students;
 using My_School.Domain.Models.Common;
 
 using MySchool.Services.ViewModels.Charters;
-using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.ViewModels.Students;
 

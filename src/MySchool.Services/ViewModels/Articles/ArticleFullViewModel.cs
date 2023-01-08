@@ -1,5 +1,6 @@
 using My_School.Domain.Entities.Articles;
 using My_School.Domain.Models.Common;
+
 using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.ViewModels;
@@ -29,8 +30,8 @@ public class ArticleFullViewModel : BaseEntity
 			Views = entity.Views,
 			Title = entity.Title,
 			Created = entity.CreatedAt,
-			AuthorImage=entity.Employee.Image,
-			AuthorName=entity.Employee.Name,
+			AuthorImage = entity.Employee.Image,
+			AuthorName = entity.Employee.Name,
 		};
 	}
 }
