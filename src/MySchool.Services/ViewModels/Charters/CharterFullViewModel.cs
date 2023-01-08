@@ -1,4 +1,6 @@
-﻿using My_School.Domain.Models.Common;
+﻿using My_School.Domain.Entities.Articles;
+using My_School.Domain.Entities.Charters;
+using My_School.Domain.Models.Common;
 
 using MySchool.Services.ViewModels.Students;
 
@@ -11,4 +13,13 @@ public class CharterFullViewModel : BaseEntity
 	public StudentShortViewModel Student { get; set; }
 
 	public DateTime Created { get; set; }
+
+	public static implicit operator CharterFullViewModel(Charter entity)
+	{
+		return new CharterFullViewModel()
+		{
+			Image = entity.Image,
+			Created = entity.CreatedAt
+		};
+	}
 }

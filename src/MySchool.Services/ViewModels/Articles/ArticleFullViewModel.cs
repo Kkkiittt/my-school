@@ -1,4 +1,6 @@
+using My_School.Domain.Entities.Articles;
 using My_School.Domain.Models.Common;
+using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.ViewModels;
 
@@ -15,7 +17,18 @@ public class ArticleFullViewModel : BaseEntity
 
 	public string Title { get; set; } = string.Empty;
 
-	public string Comments { get; set; } = string.Empty;
+	public List<CommentViewModel> Comments { get; set; } = new();
 
 	public DateTime Created { get; set; }
+
+	public static implicit operator ArticleFullViewModel(Article entity)
+	{
+		return new ArticleFullViewModel()
+		{
+			HTML = entity.HTML,
+			Views = entity.Views,
+			Title = entity.Title,
+			Created = entity.CreatedAt
+		};
+	}
 }

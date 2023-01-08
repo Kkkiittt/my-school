@@ -15,7 +15,7 @@ public class ArticleService : GenericService, IArticleService
 
 	public Task<bool> CreateAsync(ArticleCreateDto dto)
 	{
-		
+		throw new NotImplementedException();
 	}
 
 	public Task<bool> DeleteByIdAsync(long id)

@@ -1,4 +1,5 @@
-﻿using My_School.Domain.Models.Common;
+﻿using My_School.Domain.Entities.Students;
+using My_School.Domain.Models.Common;
 
 namespace MySchool.Services.ViewModels.Students;
 
@@ -9,4 +10,12 @@ public class StudentShortViewModel : BaseEntity
 	public bool Studying { get; set; }
 
 	public long Charters { get; set; }
+	public static implicit operator StudentShortViewModel(Student entity)
+	{
+		return new StudentShortViewModel()
+		{
+			Info = entity.Info,
+			Studying = entity.Studying
+		};
+	}
 }
