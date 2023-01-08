@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySchool.Services.Interfaces.Common;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-
-using MySchool.Services.Interfaces;
 
 namespace MySchool.Services.Common.Security;
 
