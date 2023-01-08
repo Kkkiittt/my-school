@@ -1,15 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Employees;
-using MySchool.Services.Interfaces.Common;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
+using My_School.Domain.Entities.Students;
+using My_School.Domain.Models.Employees;
+
+using MySchool.Services.Interfaces.Common;
 
 namespace MySchool.Services.Service.Common
 {
@@ -24,15 +23,15 @@ namespace MySchool.Services.Service.Common
 
 		public string GenerateToken(Student student)
 		{
-			var claims = new[]
+			Claim[] claims = new[]
 			{
 				new Claim("Id", student.Id.ToString())
 			};
 
-			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
-			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+			SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
+			SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
-			var tokenDescriptor = new JwtSecurityToken(_config["Issuer"], _config["Audience"], claims,
+			JwtSecurityToken tokenDescriptor = new JwtSecurityToken(_config["Issuer"], _config["Audience"], claims,
 				expires: DateTime.Now.AddYears(int.Parse(_config["Lifetime"])),
 				signingCredentials: credentials);
 
@@ -42,16 +41,16 @@ namespace MySchool.Services.Service.Common
 
 		public string GenerateToken(Employee employee)
 		{
-			var claims = new[]
+			Claim[] claims = new[]
 			{
 				new Claim("Id", employee.Id.ToString()),
 				new Claim(ClaimTypes.Role, employee.Role.ToString()),
 			};
 
-			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
-			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+			SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
+			SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
-			var tokenDescriptor = new JwtSecurityToken(_config["Issuer"], _config["Audience"], claims,
+			JwtSecurityToken tokenDescriptor = new JwtSecurityToken(_config["Issuer"], _config["Audience"], claims,
 				expires: DateTime.Now.AddMonths(int.Parse(_config["Lifetime"])),
 				signingCredentials: credentials);
 

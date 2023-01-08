@@ -1,4 +1,5 @@
 ﻿using My_School.Domain.Entities.Charters;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Dtos.Charters;

@@ -21,12 +21,13 @@ public class PhoneService : IPhoneService
 
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
+		int? code = _casher.Get(dto.Id);
 		var code = _casher.Get(dto.Id);
 		if(code == null)
 			return false;
 		if(code != dto.Code)
 			return false;
-		var entity = await _repository.Employees.FindByIdAsync(dto.Id);
+		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(dto.Id);
 		if(entity == null)
 			return false;
 		entity.PhoneVerified = true;
@@ -38,11 +39,11 @@ public class PhoneService : IPhoneService
 	{
 		try
 		{
-			var entity = await _repository.Employees.FindByIdAsync(authorId);
-			var phone = entity!.Phone;
-			var rndm = new Random();
-			var code = rndm.Next(100_000, 999_999);
-			await _smsManager.SendCode(phone, code);
+			My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(authorId);
+			string phone = entity!.Phone;
+			Random rndm = new Random();
+			int code = rndm.Next(100_000, 999_999);
+			_ = await _smsManager.SendCode(phone, code);
 			_casher.Place(entity.Id, code, 360);
 			return true;
 		}
