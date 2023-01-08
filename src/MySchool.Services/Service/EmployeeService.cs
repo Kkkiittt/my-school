@@ -1,11 +1,14 @@
 ﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Exceptions;
+using MySchool.Services.Common.Helpers;
 using MySchool.Services.Dtos.Employees;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using System.Net;
 
 namespace MySchool.Services.Service;
 
-public class EmployeeService : GenericService, IEmployeeService
+public class EmployeeService : BasicService, IEmployeeService
 {
 	public EmployeeService(IUnitOfWork repository, IFileService filer, IHasher hasher) : base(repository, filer, hasher)
 	{
@@ -14,12 +17,29 @@ public class EmployeeService : GenericService, IEmployeeService
 
 	public async Task<bool> DeleteByIdAsync(long id)
 	{
-		throw new NotImplementedException();
+		try
+		{
+			_repository.Employees.Delete(id);
+			return await _repository.SaveChanges() > 0;
+		}
+		catch
+		{
+			return false;
+		}
 	}
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
 	{
-		throw new NotImplementedException();
+		var employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Phone == dto.Phone);
+		if (employee is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
+
+		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
+		if (hashResult)
+		{
+			return null;
+			//return _authManager.GenerateToken(user);
+		}
+		else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is invalid!");
 	}
 
 	public async Task<bool> MakeAuthor(long id)
@@ -29,6 +49,20 @@ public class EmployeeService : GenericService, IEmployeeService
 
 	public async Task<bool> RegisterAsync(EmployeeRegisterDto dto)
 	{
-		throw new NotImplementedException();
+		try
+		{
+			if (_repository.Employees.GetAll().Any(x => x.Phone == dto.Phone))
+			{
+				throw new Exception();
+			}
+			var entity = await _dtoHelper.ToEntity(dto);
+			 _repository.Employees.Add(entity);
+			return await _repository.SaveChanges() > 0;
+		}
+		catch 
+		{
+			return false;
+		}
+		
 	}
 }
