@@ -17,5 +17,5 @@ public class CharterShortViewModel : BaseEntity
 			Created = entity.CreatedAt,
 			StudentInfo = entity.Student.Info
 		};
-	} 
+	}
 }

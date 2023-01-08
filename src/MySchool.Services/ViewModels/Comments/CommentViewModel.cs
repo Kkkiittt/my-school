@@ -1,4 +1,3 @@
-using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Comments;
 using My_School.Domain.Models.Common;
 

@@ -23,7 +23,7 @@ public class StudentsController : ControllerBase
 	}
 
 	[HttpPost("StudentLogin")]
-	public async Task<IActionResult> LoginAsync([FromForm]StudentLoginDto dto)
+	public async Task<IActionResult> LoginAsync([FromForm] StudentLoginDto dto)
 	{
 		return Ok(await _studentService.LoginAsync(dto));
 	}

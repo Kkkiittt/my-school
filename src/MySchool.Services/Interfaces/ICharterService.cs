@@ -1,6 +1,4 @@
-﻿using My_School.Domain.Entities.Charters;
-
-using MySchool.Services.Dtos.Charters;
+﻿using MySchool.Services.Dtos.Charters;
 using MySchool.Services.ViewModels.Charters;
 
 namespace MySchool.Services.Interfaces;

@@ -1,10 +1,8 @@
-
-using My_School.Domain.Entities.Students;
 using My_School.Domain.Enums;
 using My_School.Domain.Models.Common;
 using My_School.Domain.Models.Employees;
+
 using MySchool.Services.ViewModels.Articles;
-using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.ViewModels.Employees;
 

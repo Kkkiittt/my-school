@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MySchool.Services.Dtos.Articles;
+﻿using Microsoft.AspNetCore.Mvc;
+
 using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces;
-using MySchool.Services.ViewModels.Comments;
 
 namespace My_School.Controllers;
 

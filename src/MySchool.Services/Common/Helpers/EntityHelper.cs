@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using My_School.Domain.Entities.Articles;
-using MySchool.DataAccess.Interfaces;
-using MySchool.Services.ViewModels.Articles;
-using MySchool.Services.ViewModels.Comments;
-using MySchool.Services.ViewModels;
-using MySchool.Services.ViewModels.Charters;
+﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
 using MySchool.Services.ViewModels.Students;
 using My_School.Domain.Entities.Students;
@@ -17,11 +6,17 @@ using MySchool.Services.ViewModels.Employees;
 using My_School.Domain.Models.Employees;
 using My_School.Domain.Entities.Comments;
 
+using MySchool.DataAccess.Interfaces;
+using MySchool.Services.ViewModels;
+using MySchool.Services.ViewModels.Articles;
+using MySchool.Services.ViewModels.Charters;
+using MySchool.Services.ViewModels.Comments;
+
 namespace MySchool.Services.Common.Helpers;
 
 public class EntityHelper
 {
-	IUnitOfWork _repository { get; set; }
+	private IUnitOfWork _repository { get; set; }
 
 	public EntityHelper(IUnitOfWork repository)
 	{
