@@ -9,7 +9,8 @@ namespace MySchool.Services.Service;
 public class CharterService : BasicService, ICharterService
 {
 
-	public CharterService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
+	public CharterService(IUnitOfWork repository, IFileService filer, IHasher hasher) 
+		: base(repository, filer, hasher)
 	{
 	}
 

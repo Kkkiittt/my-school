@@ -1,4 +1,5 @@
 ﻿using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels.Comments;
@@ -7,7 +8,8 @@ namespace MySchool.Services.Service;
 
 public class CommentService : BasicService, ICommentService
 {
-	public CommentService(IUnitOfWork repository) : base(repository)
+	public CommentService(IUnitOfWork repository, IFileService filer, IHasher hasher) 
+		: base(repository, filer, hasher)
 	{
 	}
 

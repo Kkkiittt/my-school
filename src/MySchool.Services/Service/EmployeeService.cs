@@ -7,7 +7,7 @@ namespace MySchool.Services.Service;
 
 public class EmployeeService : GenericService, IEmployeeService
 {
-	public EmployeeService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
+	public EmployeeService(IUnitOfWork repository, IFileService filer, IHasher hasher) : base(repository, filer, hasher)
 	{
 
 	}

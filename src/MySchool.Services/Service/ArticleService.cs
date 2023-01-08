@@ -11,7 +11,8 @@ namespace MySchool.Services.Service;
 
 public class ArticleService : BasicService, IArticleService
 {
-	public ArticleService(IUnitOfWork repository, IFileService filer) : base(repository, filer)
+	public ArticleService(IUnitOfWork repository, IFileService filer, IHasher hasher)
+		: base(repository, filer, hasher)
 	{
 
 	}
