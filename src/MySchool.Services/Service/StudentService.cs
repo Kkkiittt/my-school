@@ -1,4 +1,4 @@
-﻿using MySchool.DataAccess.DbContexts;
+using MySchool.DataAccess.DbContexts;
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Dtos.Students;
