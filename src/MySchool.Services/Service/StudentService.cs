@@ -75,9 +75,10 @@ public class StudentService : BasicService, IStudentService
 	{
 		try
 		{
-			if (_repository.Students.GetAll().Any(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), "")))
+			var entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), ""));
+			if (entity != null)
 			{
-				//return _au.GenerateToken();
+				return _authManager.GenerateToken(entity);
 			}
 			else throw new Exception();
 
