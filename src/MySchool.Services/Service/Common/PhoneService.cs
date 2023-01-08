@@ -6,13 +6,13 @@ namespace MySchool.Services.Service.Common;
 
 public class PhoneService : IPhoneService
 {
-	protected SmsManager _smsManager { get; }
+	protected ISmsManager _smsManager { get; }
 
 	protected ICasher _casher { get; }
 
 	protected IUnitOfWork _repository { get; }
 
-	public PhoneService(IUnitOfWork repository, SmsManager smsManager, ICasher casher)
+	public PhoneService(IUnitOfWork repository, ISmsManager smsManager, ICasher casher)
 	{
 		_smsManager = smsManager;
 		_casher = casher;
@@ -22,6 +22,7 @@ public class PhoneService : IPhoneService
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
 		int? code = _casher.Get(dto.Id);
+		var code = _casher.Get(dto.Id);
 		if(code == null)
 			return false;
 		if(code != dto.Code)

@@ -1,4 +1,4 @@
-﻿namespace MySchool.Services.Interfaces.Common;
+namespace MySchool.Services.Interfaces.Common;
 
 public interface ICasher
 {

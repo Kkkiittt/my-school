@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
@@ -36,9 +36,10 @@ public class EmployeeService : BasicService, IEmployeeService
 
 		bool hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
 		if(hashResult)
+		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
+		if (hashResult && employee.PhoneVerified)
 		{
-			return null;
-			//return _authManager.GenerateToken(user);
+			return _authManager.GenerateToken(employee);
 		}
 		else
 			throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is invalid!");
@@ -46,7 +47,18 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<bool> MakeAuthor(long id)
 	{
-		throw new NotImplementedException();
+		try
+		{
+			var entity = await _repository.Employees.FindByIdAsync(id);
+			entity.Role = My_School.Domain.Enums.Role.Author;
+			_repository.Employees.Update(entity);
+			return await _repository.SaveChanges() > 0;
+		}
+		catch 
+		{
+			throw new Exception("Command failed");			
+		}
+		
 	}
 
 	public async Task<bool> RegisterAsync(EmployeeRegisterDto dto)

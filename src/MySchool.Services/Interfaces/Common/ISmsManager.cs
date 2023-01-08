@@ -1,6 +1,6 @@
-﻿namespace MySchool.Services.Interfaces.Common;
+namespace MySchool.Services.Interfaces.Common;
 
-public interface SmsManager
+public interface ISmsManager
 {
 	public Task<bool> SendCode(string number, int code);
 }
