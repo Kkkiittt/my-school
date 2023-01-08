@@ -1,7 +1,7 @@
 ﻿using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Common;
 using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.Service;
