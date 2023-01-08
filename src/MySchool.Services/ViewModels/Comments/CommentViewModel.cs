@@ -16,6 +16,6 @@ public class CommentViewModel : BaseEntity
 		{
 			Content = entity.Content,
 			StudentName = entity.Student.Info
-	};
-}
+		};
+	}
 }

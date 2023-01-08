@@ -10,6 +10,7 @@ public class StudentShortViewModel : BaseEntity
 	public bool Studying { get; set; }
 
 	public long Charters { get; set; }
+
 	public static implicit operator StudentShortViewModel(Student entity)
 	{
 		return new StudentShortViewModel()
