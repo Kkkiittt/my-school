@@ -15,6 +15,7 @@ public class CommentViewModel : BaseEntity
 		return new CommentViewModel()
 		{
 			Content = entity.Content,
-		};
-	}
+			StudentName = entity.Student.Info
+	};
+}
 }
