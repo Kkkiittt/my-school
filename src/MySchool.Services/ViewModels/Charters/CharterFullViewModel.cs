@@ -18,6 +18,7 @@ public class CharterFullViewModel : BaseEntity
 	{
 		return new CharterFullViewModel()
 		{
+			Id = entity.Id,
 			Image = entity.Image,
 			Created = entity.CreatedAt
 		};
