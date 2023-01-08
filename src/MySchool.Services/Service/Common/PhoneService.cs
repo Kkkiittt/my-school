@@ -1,4 +1,4 @@
-﻿using MySchool.DataAccess.Interfaces;
+using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Dtos.Common;
 using MySchool.Services.Interfaces.Common;
 
@@ -6,13 +6,13 @@ namespace MySchool.Services.Service.Common;
 
 public class PhoneService : IPhoneService
 {
-	protected SmsManager _smsManager { get; }
+	protected ISmsManager _smsManager { get; }
 
 	protected ICasher _casher { get; }
 
 	protected IUnitOfWork _repository { get; }
 
-	public PhoneService(IUnitOfWork repository, SmsManager smsManager, ICasher casher)
+	public PhoneService(IUnitOfWork repository, ISmsManager smsManager, ICasher casher)
 	{
 		_smsManager = smsManager;
 		_casher = casher;
