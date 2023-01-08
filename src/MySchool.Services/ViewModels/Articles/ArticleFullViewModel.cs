@@ -28,7 +28,9 @@ public class ArticleFullViewModel : BaseEntity
 			HTML = entity.HTML,
 			Views = entity.Views,
 			Title = entity.Title,
-			Created = entity.CreatedAt
+			Created = entity.CreatedAt,
+			AuthorImage=entity.Employee.Image,
+			AuthorName=entity.Employee.Name,
 		};
 	}
 }
