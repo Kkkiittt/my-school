@@ -36,8 +36,7 @@ public class EmployeeService : BasicService, IEmployeeService
 		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
 		if (hashResult)
 		{
-			return null;
-			//return _authManager.GenerateToken(user);
+			return _authManager.GenerateToken(employee);
 		}
 		else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is invalid!");
 	}
@@ -63,6 +62,5 @@ public class EmployeeService : BasicService, IEmployeeService
 		{
 			return false;
 		}
-		
 	}
 }

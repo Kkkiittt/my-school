@@ -1,4 +1,6 @@
 using My_School.Configurations;
+using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Service.Common;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IPhoneService, PhoneService>();
+
 builder.ConfigureDataAccess();
 
 WebApplication app = builder.Build();
