@@ -11,7 +11,7 @@ public class OverallService : BasicService, IOverallService
 
 	}
 
-	public Task<OverallViewModel> GetInfo()
+	public async Task<OverallViewModel> GetInfo()
 	{
 		throw new NotImplementedException();
 	}

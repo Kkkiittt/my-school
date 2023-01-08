@@ -11,17 +11,17 @@ public class CommentService : BasicService, ICommentService
 	{
 	}
 
-	public Task<bool> CreateAsync(CommentCreateDto dto)
+	public async Task<bool> CreateAsync(CommentCreateDto dto)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<bool> DeleteByIdAsyc(long articleId)
+	public async Task<bool> DeleteByIdAsyc(long articleId)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<IEnumerable<CommentViewModel>> GetByArticleAsync(long articleId)
+	public async Task<IEnumerable<CommentViewModel>> GetByArticleAsync(long articleId)
 	{
 		throw new NotImplementedException();
 	}

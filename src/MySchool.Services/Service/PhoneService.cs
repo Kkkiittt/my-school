@@ -11,12 +11,12 @@ public class PhoneService : BasicService, IPhoneService
 
 	}
 
-	public Task<bool> ConfirmCode(CodeConfirmDto dto)
+	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<bool> SendCode(long authorId)
+	public async Task<bool> SendCode(long authorId)
 	{
 		throw new NotImplementedException();
 	}
