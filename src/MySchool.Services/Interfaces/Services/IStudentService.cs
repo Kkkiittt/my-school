@@ -1,5 +1,4 @@
 using MySchool.Services.Dtos.Students;
-using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Interfaces;

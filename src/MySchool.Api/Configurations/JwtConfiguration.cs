@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Text;
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace My_School.Configurations
 {
@@ -8,8 +9,8 @@ namespace My_School.Configurations
 	{
 		public static void ConfigureAuth(this WebApplicationBuilder builder)
 		{
-			var _config = builder.Configuration.GetSection("Jwt");
-			builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+			IConfigurationSection _config = builder.Configuration.GetSection("Jwt");
+			_ = builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			  .AddJwtBearer(options =>
 			  {
 				  options.TokenValidationParameters = new TokenValidationParameters()

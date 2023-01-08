@@ -1,6 +1,4 @@
-﻿using My_School.Domain.Models.Common;
-
-namespace MySchool.Services.ViewModels.Common;
+﻿namespace MySchool.Services.ViewModels.Common;
 
 public class OverallViewModel
 {
