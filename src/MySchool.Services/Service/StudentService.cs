@@ -12,17 +12,17 @@ public class StudentService : BasicService, IStudentService
 
 	}
 
-	public Task<bool> DeleteByIdAsync(long id)
+	public async Task<bool> DeleteByIdAsync(long id)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<string> LoginAsync(StudentLoginDto dto)
+	public async Task<string> LoginAsync(StudentLoginDto dto)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<StudentRegisterViewModel> RegisterAsync(StudentRegisterDto dto)
+	public async Task<StudentRegisterViewModel> RegisterAsync(StudentRegisterDto dto)
 	{
 		throw new NotImplementedException();
 	}
