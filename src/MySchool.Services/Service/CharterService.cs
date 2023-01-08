@@ -5,7 +5,7 @@ using MySchool.Services.ViewModels.Charters;
 
 namespace MySchool.Services.Service;
 
-public class CharterService : BasicService, ICharterService
+public class CharterService : GenericService, ICharterService
 {
 	public CharterService(IUnitOfWork repository) : base(repository)
 	{

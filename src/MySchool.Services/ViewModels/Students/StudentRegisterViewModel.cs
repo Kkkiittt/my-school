@@ -1,9 +1,8 @@
 ﻿using My_School.Domain.Models.Common;
 
-namespace MySchool.Services.ViewModels.Students
+namespace MySchool.Services.ViewModels.Students;
+
+public class StudentRegisterViewModel : BaseEntity
 {
-	public class StudentRegisterViewModel : BaseEntity
-	{
-		public int Pin { get; set; }
-	}
+	public int Pin { get; set; }
 }
