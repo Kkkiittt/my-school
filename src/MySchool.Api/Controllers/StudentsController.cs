@@ -16,12 +16,14 @@ public class StudentsController : ControllerBase
 		_studentService = studentService;
 	}
 
+	//register
 	[HttpPost("StudentRegister")]
 	public async Task<IActionResult> RegisterAsync([FromForm] StudentRegisterDto dto)
 	{
 		return Ok(await _studentService.RegisterAsync(dto)); 
 	}
 
+	//students login
 	[HttpPost("StudentLogin")]
 	public async Task<IActionResult> LoginAsync([FromForm]StudentLoginDto dto)
 	{
