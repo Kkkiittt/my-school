@@ -34,10 +34,9 @@ public class EmployeeService : BasicService, IEmployeeService
 		if (employee is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
 
 		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
-		if (hashResult)
+		if (hashResult && employee.PhoneVerified)
 		{
-			return null;
-			//return _authManager.GenerateToken(user);
+			return _authManager.GenerateToken(employee);
 		}
 		else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is invalid!");
 	}
