@@ -1,10 +1,12 @@
 ﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
+using My_School.Domain.Entities.Comments;
 using My_School.Domain.Entities.Students;
 using My_School.Domain.Models.Employees;
 
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Dtos.Charters;
+using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Dtos.Employees;
 using MySchool.Services.Dtos.Students;
 
@@ -22,5 +24,6 @@ namespace MySchool.Services.Interfaces.Common
 
 		public Task<Student> ToEntity(StudentRegisterDto dto);
 
+		public Task<Comment> ToEntity(CommentCreateDto dto);
 	}
 }
