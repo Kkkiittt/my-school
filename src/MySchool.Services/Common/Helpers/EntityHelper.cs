@@ -9,6 +9,8 @@ using MySchool.DataAccess.Interfaces;
 using MySchool.Services.ViewModels.Articles;
 using MySchool.Services.ViewModels.Comments;
 using MySchool.Services.ViewModels;
+using MySchool.Services.ViewModels.Charters;
+using My_School.Domain.Entities.Charters;
 
 namespace MySchool.Services.Common.Helpers;
 
@@ -31,5 +33,10 @@ public class EntityHelper
 		ArticleFullViewModel fullVM = entity;
 		fullVM.Comments = _repository.Comments.Where(x => x.ArticleId == entity.Id).Select(x => (CommentViewModel)x).ToList();
 		return fullVM;
+	}
+	public CharterShortViewModel ToShort(Charter entity)
+	{
+		CharterShortViewModel charterVM = entity;
+		return charterVM;
 	}
 }
