@@ -11,19 +11,20 @@ using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 using MySchool.Services.ViewModels.Charters;
 using MySchool.Services.ViewModels.Comments;
+using MySchool.Services.Interfaces.Common;
 
 namespace MySchool.Services.Common.Helpers;
 
-public class EntityHelper
+public class ViewModelHelper : IViewModelHelper
 {
 	private IUnitOfWork _repository { get; set; }
 
-	public EntityHelper(IUnitOfWork repository)
+	public ViewModelHelper(IUnitOfWork repository)
 	{
 		_repository = repository;
 	}
 
-	public ArticleShortViewModel ToShort(Article entity)
+	public  ArticleShortViewModel ToShort(Article entity)
 	{
 		ArticleShortViewModel shortVM = entity;
 		return shortVM;

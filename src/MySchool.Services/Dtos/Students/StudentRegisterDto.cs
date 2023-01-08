@@ -11,9 +11,11 @@ public class StudentRegisterDto
 	public string Info { get; set; } = string.Empty;
 	public static implicit operator Student(StudentRegisterDto dto)
 	{
-		return new StudentRegisterDto()
+		return new Student()
 		{
 			Info = dto.Info,
+			Acted = DateTime.MinValue,
+			Studying = true
 		};
 	}
 }

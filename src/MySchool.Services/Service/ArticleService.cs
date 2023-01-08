@@ -1,9 +1,9 @@
 ﻿using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Common;
 using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 
