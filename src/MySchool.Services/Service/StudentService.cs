@@ -77,7 +77,7 @@ public class StudentService : BasicService, IStudentService
 		{
 			if (_repository.Students.GetAll().Any(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), "")))
 			{
-				return "ssas";
+				//return _au.GenerateToken();
 			}
 			else throw new Exception();
 
