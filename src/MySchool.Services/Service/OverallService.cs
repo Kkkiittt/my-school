@@ -7,7 +7,7 @@ namespace MySchool.Services.Service;
 
 public class OverallService : BasicService, IOverallService
 {
-	public OverallService(IUnitOfWork repository, IFileService filer, IHasher hasher) : base(repository, filer, hasher)
+	public OverallService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
 	{
 
 	}

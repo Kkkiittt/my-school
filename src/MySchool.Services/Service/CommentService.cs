@@ -8,8 +8,8 @@ namespace MySchool.Services.Service;
 
 public class CommentService : BasicService, ICommentService
 {
-	public CommentService(IUnitOfWork repository, IFileService filer, IHasher hasher)
-		: base(repository, filer, hasher)
+	public CommentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager)
+		: base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
 	{
 	}
 
@@ -43,7 +43,7 @@ public class CommentService : BasicService, ICommentService
 	{
 		try
 		{
-			return _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x=>x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+			return _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
 		}
 		catch
 		{

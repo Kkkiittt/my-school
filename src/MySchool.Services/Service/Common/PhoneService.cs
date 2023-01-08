@@ -6,7 +6,7 @@ namespace MySchool.Services.Service.Common;
 
 public class PhoneService : BasicService, IPhoneService
 {
-	public PhoneService(IUnitOfWork repository) : base(repository)
+	public PhoneService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
 	{
 
 	}

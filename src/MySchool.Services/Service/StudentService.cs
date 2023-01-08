@@ -11,8 +11,7 @@ namespace MySchool.Services.Service;
 
 public class StudentService : BasicService, IStudentService
 {
-	public StudentService(IUnitOfWork repository, IFileService filer, IHasher hasher)
-		: base(repository, filer, hasher)
+	public StudentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
 	{
 
 	}
