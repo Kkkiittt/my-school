@@ -31,24 +31,4 @@ public class EmployeeService : GenericService, IEmployeeService
 	{
 		throw new NotImplementedException();
 	}
-
-	async Task<bool> IEmployeeService.DeleteByIdAsync(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	async Task<string> IEmployeeService.LoginAsync(EmployeeLoginDto dto)
-	{
-		throw new NotImplementedException();
-	}
-
-	async Task<bool> IEmployeeService.MakeAuthor(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	async Task<bool> IEmployeeService.RegisterAsync(EmployeeRegisterDto dto)
-	{
-		throw new NotImplementedException();
-	}
 }

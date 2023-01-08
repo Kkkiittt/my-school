@@ -1,9 +1,13 @@
-﻿using MySchool.DataAccess.Interfaces;
+﻿using My_School.Domain.Entities.Articles;
+using My_School.Domain.Models.Employees;
+
+using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Interfaces;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
 using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
+using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.Service;
 
@@ -14,52 +18,56 @@ public class ArticleService : GenericService, IArticleService
 
 	}
 
-	public Task<bool> CreateAsync(ArticleCreateDto dto)
+	public async Task<bool> CreateAsync(ArticleCreateDto dto)
+	{
+		try
+		{
+			Article article = dto;
+			if(dto.Image != null)
+			{
+				article.Image = await _filer.SaveImageAsync(dto.Image);
+			}
+			article.CreatedAt = DateTime.Now;
+			article.Views = 0;
+			_repository.Articles.Add(article);
+			return await _repository.SaveChanges() > 0;
+		}
+		catch
+		{
+			return false;
+		}
+	}
+
+	public async Task<bool> DeleteByIdAsync(long id)
+	{
+		try
+		{
+			_repository.Articles.Delete(id);
+			return await _repository.SaveChanges() > 0;
+		}
+		catch
+		{
+			return false;
+		}
+	}
+
+	public async Task<IEnumerable<ArticleShortViewModel>> GetAll()
+	{
+		try
+		{
+		}
+		catch
+		{
+			return Enumerable.Empty<ArticleShortViewModel>();
+		}
+	}
+
+	public async Task<IEnumerable<ArticleShortViewModel>> GetByAuthor(long authorId)
 	{
 		throw new NotImplementedException();
 	}
 
-	public Task<bool> DeleteByIdAsync(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<IEnumerable<ArticleShortViewModel>> GetAll()
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<IEnumerable<ArticleShortViewModel>> GetByAuthor(long authorId)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<ArticleFullViewModel> GetById(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<bool> IArticleService.CreateAsync(ArticleCreateDto dto)
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<bool> IArticleService.DeleteByIdAsync(long id)
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<IEnumerable<ArticleShortViewModel>> IArticleService.GetAll()
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<IEnumerable<ArticleShortViewModel>> IArticleService.GetByAuthor(long authorId)
-	{
-		throw new NotImplementedException();
-	}
-
-	Task<ArticleFullViewModel> IArticleService.GetById(long id)
+	public async Task<ArticleFullViewModel> GetById(long id)
 	{
 		throw new NotImplementedException();
 	}

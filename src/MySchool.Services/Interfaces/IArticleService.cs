@@ -1,4 +1,6 @@
-﻿using MySchool.Services.Dtos.Articles;
+﻿using My_School.Domain.Entities.Articles;
+
+using MySchool.Services.Dtos.Articles;
 using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 
