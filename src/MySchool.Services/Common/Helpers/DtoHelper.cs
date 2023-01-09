@@ -13,7 +13,7 @@ using MySchool.Services.Interfaces.Common;
 
 namespace MySchool.Services.Common.Helpers;
 
-public class DtoHelper
+public class DtoHelper : IDtoHelper
 {
 	private IFileService _filer { get; set; }
 	private IHasher _hasher { get; set; }
@@ -51,7 +51,7 @@ public class DtoHelper
 		{
 			employee.Image = await _filer.SaveImageAsync(dto.Image);
 		}
-		employee.Password = _hasher.Hash(dto.Password, dto.Phone);
+		employee.Password = _hasher.Hash(dto.Password, dto.Email);
 		return employee;
 	}
 

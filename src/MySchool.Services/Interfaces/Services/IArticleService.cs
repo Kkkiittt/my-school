@@ -1,4 +1,5 @@
-﻿using MySchool.Services.Dtos.Articles;
+﻿using MySchool.Services.Common.Utils;
+using MySchool.Services.Dtos.Articles;
 using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 
@@ -12,7 +13,7 @@ public interface IArticleService
 
 	public Task<ArticleFullViewModel> GetById(long id);
 
-	public Task<IEnumerable<ArticleShortViewModel>> GetAll();
+	public Task<IEnumerable<ArticleShortViewModel>> GetAll(PaginationParams @params);
 
 	public Task<IEnumerable<ArticleShortViewModel>> GetByAuthor(long authorId);
 }

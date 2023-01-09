@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace MySchool.Services.Attributes;
 [AttributeUsage(AttributeTargets.Property)]
-public class Phone : ValidationAttribute
+public class Email : ValidationAttribute
 {
-	private string pattern = @"\D";
+	private string pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
 	public override bool IsValid(object? value)
 	{
 		Regex regEx = new Regex(pattern);

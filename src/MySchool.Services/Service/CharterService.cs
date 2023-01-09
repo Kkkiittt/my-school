@@ -1,6 +1,9 @@
-﻿using My_School.Domain.Entities.Charters;
+﻿using Microsoft.EntityFrameworkCore;
+using My_School.Domain.Entities.Charters;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Charters;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
@@ -42,11 +45,14 @@ public class CharterService : BasicService, ICharterService
 		}
 	}
 
-	public async Task<IEnumerable<CharterShortViewModel>> GetAll()
+	public async Task<IEnumerable<CharterShortViewModel>> GetAll(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+			var query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
 		{

@@ -10,9 +10,9 @@ public class Employee : BaseEntity
 
 	public string Password { get; set; } = String.Empty;
 
-	public string Phone { get; set; } = String.Empty;
+	public string Email { get; set; } = String.Empty;
 
-	public bool PhoneVerified { get; set; }
+	public bool EmailVerified { get; set; }
 
 	public Role Role { get; set; } = 0;
 

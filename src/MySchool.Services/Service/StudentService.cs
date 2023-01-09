@@ -1,10 +1,10 @@
-using MySchool.DataAccess.DbContexts;
+using Microsoft.EntityFrameworkCore;
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
-using MySchool.Services.Service.Common;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Service;
@@ -29,41 +29,47 @@ public class StudentService : BasicService, IStudentService
 		}
 	}
 
-	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync()
+	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Students.GetAll().OrderByDescending(x => x.Studying)
+			var query = _repository.Students.GetAll().OrderByDescending(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
-		{ 
-			return Enumerable.Empty<StudentShortViewModel>();					
+		{
+			return Enumerable.Empty<StudentShortViewModel>();
 		}
-										   
+
 	}
 
 	public async Task<StudentFullViewModel> GetByIdAsync(long id)
 	{
 		try
 		{
-			var entity = await _repository.Students.FindByIdAsync(id);
-			if (entity == null)
+			My_School.Domain.Entities.Students.Student? entity = await _repository.Students.FindByIdAsync(id);
+			if(entity == null)
 				throw new Exception();
 			return _viewModelHelper.ToFull(entity);
 		}
-		catch 
+		catch
 		{
 			throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found student on this id");
 		}
 	}
 
-	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync()
+	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
+			var query = _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
 		{
@@ -75,41 +81,43 @@ public class StudentService : BasicService, IStudentService
 	{
 		try
 		{
-			var entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), ""));
-			if (entity != null)
+			My_School.Domain.Entities.Students.Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), ""));
+			if(entity != null)
 			{
 				return _authManager.GenerateToken(entity);
 			}
-			else throw new Exception();
+			else
+				throw new Exception();
 
 		}
-		catch 
+		catch
 		{
-			throw new Exception("Password is wrong");	
+			throw new Exception("Something is wrong");
 		}
-		
-		
+
+
 	}
 
 	public async Task<StudentRegisterViewModel> RegisterAsync(StudentRegisterDto dto)
 	{
 		try
 		{
-			
-			if(_repository.Students.GetAll().Any(x=>x.Info==dto.Info)) throw new Exception();
-			var entity = await _dtoHelper.ToEntity(dto);
-			var PinCode = entity.Pin;
+
+			if(_repository.Students.GetAll().Any(x => x.Info == dto.Info))
+				throw new Exception();
+			My_School.Domain.Entities.Students.Student entity = await _dtoHelper.ToEntity(dto);
+			string PinCode = entity.Pin;
 			entity.Pin = _hasher.Hash(entity.Pin, "");
 			_repository.Students.Add(entity);
-			var studentId = _repository.Students.GetAll().MaxBy(x => x.Id).Id;
+			long studentId = _repository.Students.GetAll().MaxBy(x => x.Id).Id;
 			return new StudentRegisterViewModel
 			{
 				Pin = int.Parse(PinCode),
 				Id = studentId
 			};
-			
+
 		}
-		catch 
+		catch
 		{
 
 			throw new Exception("This student already exist");

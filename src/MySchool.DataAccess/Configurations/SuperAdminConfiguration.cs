@@ -14,12 +14,12 @@ public class SuperAdminConfiguration : IEntityTypeConfiguration<Employee>
 		{
 			Id = 1,
 			Name = "Admin",
-			Password = "a7029aeb06f181e9116ea8af2b80d7b3ffec0691f44aa58967d7f6ba5adc95d9",
-			Phone = "998930090415",
-			PhoneVerified = true,
+			Password = "mk5/RJY1Pg65Z4MqpNnG5rCDUDGtjM2P42MlohbRcEs=",
+			Email = "khamidov357@gmail.com",
+			EmailVerified = true,
 			Role = Role.Admin,
 			Image = "",
-			Acted = default
+			Acted = DateTime.MinValue
 		}
 		);
 	}
