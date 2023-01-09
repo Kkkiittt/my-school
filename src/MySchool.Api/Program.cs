@@ -6,7 +6,6 @@ using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
 using MySchool.Services.Service;
 using MySchool.Services.Service.Common;
-using MySchool.Services.Interfaces.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -35,11 +34,13 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IOverallService, OverallService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.ConfigureDataAccess();
+builder.ConfigureAuth();
+builder.Services.ConfigureSwaggerAuthorize();
 
 WebApplication app = builder.Build();
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Configure the HTTP request pipeline.
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
 	_ = app.UseSwagger();
 	_ = app.UseSwaggerUI();

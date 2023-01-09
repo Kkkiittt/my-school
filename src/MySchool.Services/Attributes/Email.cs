@@ -11,6 +11,6 @@ public class Email : ValidationAttribute
 	{
 		Regex regEx = new Regex(pattern);
 		string num = value!.ToString()!;
-		return regEx.IsMatch(num) && num.Length == 12;
+		return regEx.IsMatch(num);
 	}
 }

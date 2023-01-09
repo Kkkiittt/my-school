@@ -23,28 +23,30 @@ public class ConfirmationService : IConfirmationService
 	{
 		var email = (await _repository.Employees.FindByIdAsync(dto.Id)).Email;
 		int? code = _casher.Get(email);
-		if(code == null)
+		if (code == null)
 			return false;
-		if(code != dto.Code)
+		if (code != dto.Code)
 			return false;
 		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(dto.Id);
-		if(entity == null)
+		if (entity == null)
 			return false;
 		entity.EmailVerified = true;
 		_repository.Employees.Update(entity);
 		return await _repository.SaveChanges() > 0;
 	}
 
-	public async Task<bool> SendCode(string email)
+	public async Task<long> SendCode(string email)
 	{
 		//try
 		//{
-
-			Random rndm = new Random();
-			int code = rndm.Next(100_000, 999_999);
-			_ = await _emailManager.SendCode(email, code);
-			_casher.Place(email, code, 600);
-			return true;
+		var entity = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == email);
+		if (entity == null)
+			throw new Exception("User Not Found");
+		Random rndm = new Random();
+		int code = rndm.Next(100_000, 999_999);
+		_ = await _emailManager.SendCode(email, code);
+		_casher.Place(email, code, 600);
+		return entity.Id;
 		//}
 		//catch
 		//{
