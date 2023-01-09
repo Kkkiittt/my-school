@@ -30,7 +30,7 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
 	{
-		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Phone);
+		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
 		if(employee is null)
 			throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
 
@@ -63,7 +63,7 @@ public class EmployeeService : BasicService, IEmployeeService
 	{
 		try
 		{
-			if(_repository.Employees.GetAll().Any(x => x.Email == dto.Phone))
+			if(_repository.Employees.GetAll().Any(x => x.Email == dto.Email))
 			{
 				throw new Exception();
 			}
