@@ -11,7 +11,7 @@ namespace My_School.Controllers;
 public class StudentsController : ControllerBase
 {
 	private readonly IStudentService _studentService;
-
+	private readonly int _pageSize = 20;
 	public StudentsController(IStudentService studentService)
 	{
 		_studentService = studentService;
@@ -32,14 +32,12 @@ public class StudentsController : ControllerBase
 	}
 
 	[HttpGet("GetAllStudents")]
-	public async Task<IActionResult> GetAllAsync(
-		[FromQuery] PaginationParams @params)
-			=> Ok(await _studentService.GetAllAsync(@params));
+	public async Task<IActionResult> GetAllAsync(int page = 1)
+			=> Ok(await _studentService.GetAllAsync(new PaginationParams(page, _pageSize)));
 
 	[HttpGet("GetStudying")]
-	public async Task<IActionResult> GetByStudying(
-		[FromQuery] PaginationParams @params)
-			=> Ok(await _studentService.GetStudyingAsync(@params));
+	public async Task<IActionResult> GetByStudying(int page = 1)
+			=> Ok(await _studentService.GetStudyingAsync(new PaginationParams(page, _pageSize)));
 
 	[HttpDelete("DeleteStudent")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
