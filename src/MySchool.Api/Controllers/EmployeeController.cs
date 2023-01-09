@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Dtos.Employees;
@@ -17,18 +18,21 @@ public class EmployeeController : ControllerBase
 	}
 
 	[HttpPost("EmployeeRegister")]
+	[AllowAnonymous]
 	public async Task<IActionResult> RegisterAsync([FromForm] EmployeeRegisterDto dto)
 	{
 		return Ok(await _employeeService.RegisterAsync(dto));
 	}
 
 	[HttpPost("EmployeeLogin")]
+	[AllowAnonymous]
 	public async Task<IActionResult> LoginAsync([FromForm] EmployeeLoginDto dto)
 	{
 		return Ok(await _employeeService.LoginAsync(dto));
 	}
 
 	[HttpDelete("DeleteEmployee")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _employeeService.DeleteByIdAsync(id));
@@ -36,6 +40,7 @@ public class EmployeeController : ControllerBase
 
 
 	[HttpPut("MakeAuthor")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> MakeAuthorAsync(long id)
 	{
 		return Ok(await _employeeService.MakeAuthor(id));

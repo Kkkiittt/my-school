@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Common.Utils;
@@ -19,6 +20,7 @@ public class StudentsController : ControllerBase
 
 	//register
 	[HttpPost("StudentRegister")]
+	[Authorize(Roles = "Author, Admin")]
 	public async Task<IActionResult> RegisterAsync([FromForm] StudentRegisterDto dto)
 	{
 		return Ok(await _studentService.RegisterAsync(dto));
@@ -26,20 +28,24 @@ public class StudentsController : ControllerBase
 
 	//students login
 	[HttpPost("StudentLogin")]
+	[AllowAnonymous]
 	public async Task<IActionResult> LoginAsync([FromForm] StudentLoginDto dto)
 	{
 		return Ok(await _studentService.LoginAsync(dto));
 	}
 
 	[HttpGet("GetAllStudents")]
+	[AllowAnonymous]
 	public async Task<IActionResult> GetAllAsync(int page = 1)
 			=> Ok(await _studentService.GetAllAsync(new PaginationParams(page, _pageSize)));
 
 	[HttpGet("GetStudying")]
+	[AllowAnonymous]
 	public async Task<IActionResult> GetByStudying(int page = 1)
 			=> Ok(await _studentService.GetStudyingAsync(new PaginationParams(page, _pageSize)));
 
 	[HttpDelete("DeleteStudent")]
+	[Authorize(Roles = "Author, Admin")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _studentService.DeleteByIdAsync(id));
