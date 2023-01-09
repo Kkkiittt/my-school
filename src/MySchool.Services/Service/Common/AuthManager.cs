@@ -25,7 +25,8 @@ namespace MySchool.Services.Service.Common
 		{
 			Claim[] claims = new[]
 			{
-				new Claim("Id", student.Id.ToString())
+				new Claim("Id", student.Id.ToString()),
+				new Claim(ClaimTypes.Role, "Student")
 			};
 
 			SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
