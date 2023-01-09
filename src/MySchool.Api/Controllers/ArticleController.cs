@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
 
@@ -35,10 +35,10 @@ public class ArticleController : ControllerBase
 	}
 
 	[HttpGet("GetAllArticles")]
-	public async Task<IActionResult> GetAllAsync()
-	{
-		return Ok(await _articleService.GetAll());
-	}
+	public async Task<IActionResult> GetAllAsync(
+		[FromQuery] PaginationParams @params)
+			=> Ok(await _articleService.GetAll(@params));
+	
 
 	[HttpGet("GetArticelByAuthor")]
 	public async Task<IActionResult> GetByAuthorAsync(long authorId)

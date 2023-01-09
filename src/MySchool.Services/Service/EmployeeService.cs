@@ -33,7 +33,6 @@ public class EmployeeService : BasicService, IEmployeeService
 		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
 		if(employee is null)
 			throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
-
 		bool hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Email);
 		if(hashResult && employee.EmailVerified)
 		{
