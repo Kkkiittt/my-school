@@ -51,7 +51,7 @@ public class DtoHelper : IDtoHelper
 		{
 			employee.Image = await _filer.SaveImageAsync(dto.Image);
 		}
-		employee.Password = _hasher.Hash(dto.Password, dto.Phone);
+		employee.Password = _hasher.Hash(dto.Password, dto.Email);
 		return employee;
 	}
 

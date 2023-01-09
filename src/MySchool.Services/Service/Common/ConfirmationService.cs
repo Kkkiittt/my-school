@@ -4,17 +4,17 @@ using MySchool.Services.Interfaces.Common;
 
 namespace MySchool.Services.Service.Common;
 
-public class PhoneService : IPhoneService
+public class ConfirmationService : IConfirmationService
 {
-	protected ISmsManager _smsManager { get; }
+	protected IEmailManager _emailManager { get; }
 
 	protected ICasher _casher { get; }
 
 	protected IUnitOfWork _repository { get; }
 
-	public PhoneService(IUnitOfWork repository, ISmsManager smsManager, ICasher casher)
+	public ConfirmationService(IUnitOfWork repository, IEmailManager emailManager, ICasher casher)
 	{
-		_smsManager = smsManager;
+		_emailManager = emailManager;
 		_casher = casher;
 		_repository = repository;
 	}
@@ -29,7 +29,7 @@ public class PhoneService : IPhoneService
 		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(dto.Id);
 		if(entity == null)
 			return false;
-		entity.PhoneVerified = true;
+		entity.EmailVerified = true;
 		_repository.Employees.Update(entity);
 		return await _repository.SaveChanges() > 0;
 	}
@@ -39,10 +39,10 @@ public class PhoneService : IPhoneService
 		try
 		{
 			My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(authorId);
-			string phone = entity!.Phone;
+			string phone = entity!.Email;
 			Random rndm = new Random();
 			int code = rndm.Next(100_000, 999_999);
-			_ = await _smsManager.SendCode(phone, code);
+			_ = await _emailManager.SendCode(phone, code);
 			_casher.Place(entity.Id, code, 600);
 			return true;
 		}
