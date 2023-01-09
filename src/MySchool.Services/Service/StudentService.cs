@@ -82,13 +82,14 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-			My_School.Domain.Entities.Students.Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), ""));
-			if(entity != null)
-			{
-				return _authManager.GenerateToken(entity);
-			}
-			else
-				throw new Exception();
+			My_School.Domain.Entities.Students.Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id );
+
+		if (entity == null)
+			throw new Exception("student is null");
+		var passwordhashed = _hasher.Hash(dto.Pin.ToString(), "");
+		if (entity.Pin != passwordhashed)
+			throw new Exception("Password is incorrect");
+		return _authManager.GenerateToken(entity);
 
 		//}
 		//catch
@@ -110,7 +111,8 @@ public class StudentService : BasicService, IStudentService
 			string PinCode = entity.Pin;
 			entity.Pin = _hasher.Hash(entity.Pin, "");
 			_repository.Students.Add(entity);
-			long studentId = _repository.Students.GetAll().MaxBy(x => x.Id).Id;
+		    await _repository.SaveChanges();
+			long studentId = _repository.Students.GetAll().FirstOrDefaultAsync(x => x.Info == dto.Info).Id;
 			return new StudentRegisterViewModel
 			{
 				Pin = int.Parse(PinCode),

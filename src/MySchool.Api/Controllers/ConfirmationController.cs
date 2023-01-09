@@ -8,7 +8,6 @@ namespace My_School.Controllers;
 
 [Route("api/confirmService")]
 [ApiController]
-
 public class ConfirmationController : ControllerBase
 {
 	private readonly IConfirmationService _confirmationService;
@@ -26,7 +25,7 @@ public class ConfirmationController : ControllerBase
 	}
 
 	[HttpPost("ConfirmCode")]
-	[Authorize(Roles = "Teacher, Author, Admin")]
+	[AllowAnonymous]
 	public async Task<IActionResult> ConfirmCode([FromForm] CodeConfirmDto dto)
 	{
 		return Ok(await _confirmationService.ConfirmCode(dto));
