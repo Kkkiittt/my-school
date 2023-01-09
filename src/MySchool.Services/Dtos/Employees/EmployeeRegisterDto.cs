@@ -17,10 +17,10 @@ public class EmployeeRegisterDto
 	{
 		return new Employee()
 		{
-			Phone = dto.Phone,
+			Email = dto.Phone,
 			Name = dto.Name,
 			Acted = DateTime.MinValue,
-			PhoneVerified = false,
+			EmailVerified = false,
 			Role = Role.Teacher
 		};
 	}

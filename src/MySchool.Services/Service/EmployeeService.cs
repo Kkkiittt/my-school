@@ -30,14 +30,12 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
 	{
-		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Phone == dto.Phone);
+		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Phone);
 		if(employee is null)
 			throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
 
-		bool hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
-		if(hashResult)
-		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
-		if (hashResult && employee.PhoneVerified)
+		bool hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Email);
+		if(hashResult && employee.EmailVerified)
 		{
 			return _authManager.GenerateToken(employee);
 		}
@@ -54,18 +52,18 @@ public class EmployeeService : BasicService, IEmployeeService
 			_repository.Employees.Update(entity);
 			return await _repository.SaveChanges() > 0;
 		}
-		catch 
+		catch
 		{
-			throw new Exception("Command failed");			
+			throw new Exception("Command failed");
 		}
-		
+
 	}
 
 	public async Task<bool> RegisterAsync(EmployeeRegisterDto dto)
 	{
 		try
 		{
-			if(_repository.Employees.GetAll().Any(x => x.Phone == dto.Phone))
+			if(_repository.Employees.GetAll().Any(x => x.Email == dto.Phone))
 			{
 				throw new Exception();
 			}

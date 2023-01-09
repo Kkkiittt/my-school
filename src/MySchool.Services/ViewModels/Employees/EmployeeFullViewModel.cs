@@ -23,7 +23,7 @@ public class EmployeeFullViewModel : BaseEntity
 		{
 			Id = entity.Id,
 			Name = entity.Name,
-			Phone = entity.Phone,
+			Phone = entity.Email,
 			Role = entity.Role
 		};
 	}

@@ -2,7 +2,7 @@
 
 namespace MySchool.Services.Interfaces.Common;
 
-public interface IPhoneService
+public interface IConfirmationService
 {
 	public Task<bool> SendCode(long authorId);
 
