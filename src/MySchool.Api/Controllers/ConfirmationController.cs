@@ -23,9 +23,9 @@ public class ConfirmationController : ControllerBase
 	}
 
 	[HttpPost("SendCode")]
-	public async Task<IActionResult> SendCode([FromForm] int id)
+	public async Task<IActionResult> SendCode([FromForm] string email)
 	{
-		return Ok(await _confirmationService.SendCode(id));
+		return Ok(await _confirmationService.SendCode(email));
 	}
 
 	[HttpPost("ConfirmCode")]

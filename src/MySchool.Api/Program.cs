@@ -8,6 +8,7 @@ using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
 using MySchool.Services.Service;
 using MySchool.Services.Service.Common;
+using MySchool.Services.Interfaces.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,7 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IHasher, Hasher>();
 builder.Services.AddScoped<IPaginatorService, PaginatorService>();
 builder.Services.AddScoped<IConfirmationService, ConfirmationService>();
-//builder.Services.AddScoped<IEma, SmsManager>();
+builder.Services.AddScoped<IEmailManager, EmailManager>();
 builder.Services.AddScoped<IViewModelHelper, ViewModelHelper>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICharterService, CharterService>();

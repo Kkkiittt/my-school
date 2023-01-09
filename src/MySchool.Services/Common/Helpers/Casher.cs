@@ -12,12 +12,12 @@ public class Casher : ICasher
 		_cache = cache;
 	}
 
-	public void Place(long key, int value, double seconds)
+	public void Place(string key, int value, double seconds)
 	{
 		_ = _cache.Set(key, value, TimeSpan.FromSeconds(seconds));
 	}
 
-	public int? Get(long key)
+	public int? Get(string key)
 	{
 		return (int)_cache.Get(key);
 	}

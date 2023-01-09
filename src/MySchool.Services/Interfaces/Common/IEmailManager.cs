@@ -2,5 +2,5 @@ namespace MySchool.Services.Interfaces.Common;
 
 public interface IEmailManager
 {
-	public Task<bool> SendCode(string number, int code);
+	public Task<bool> SendCode(string email, int code);
 }
