@@ -46,16 +46,4 @@ public class StudentsController : ControllerBase
 	{
 		return Ok(await _studentService.DeleteByIdAsync(id));
 	}
-
-	[HttpGet("GetStudying")]
-	public async Task<IActionResult> GetStudying()
-	{
-		return Ok(await _studentService.GetStudyingAsync());
-	}
-
-	[HttpGet("GetAll")]
-	public async Task<IActionResult> GetAll()
-	{
-		return Ok(await _studentService.GetAllAsync());
-	}
 }
