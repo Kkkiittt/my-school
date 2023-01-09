@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
@@ -10,6 +11,7 @@ namespace My_School.Controllers;
 public class ArticleController : ControllerBase
 {
 	private readonly IArticleService _articleService;
+	private readonly int _pageSize = 20;
 
 	public ArticleController(IArticleService articleService)
 	{
@@ -35,10 +37,9 @@ public class ArticleController : ControllerBase
 	}
 
 	[HttpGet("GetAllArticles")]
-	public async Task<IActionResult> GetAllAsync(
-		[FromQuery] PaginationParams @params)
-			=> Ok(await _articleService.GetAll(@params));
-	
+	public async Task<IActionResult> GetAllAsync(int page = 1)
+			=> Ok(await _articleService.GetAll(new PaginationParams(page, _pageSize)));
+
 
 	[HttpGet("GetArticelByAuthor")]
 	public async Task<IActionResult> GetByAuthorAsync(long authorId)
