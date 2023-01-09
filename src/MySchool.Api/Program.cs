@@ -1,6 +1,4 @@
 using My_School.Configurations;
-using MySchool.Services.Interfaces.Common;
-using MySchool.Services.Service.Common;
 
 using MySchool.Services.Common.Helpers;
 using MySchool.Services.Common.Security;

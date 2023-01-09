@@ -46,7 +46,7 @@ public class EmployeeService : BasicService, IEmployeeService
 	{
 		try
 		{
-			var entity = await _repository.Employees.FindByIdAsync(id);
+			My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(id);
 			entity.Role = My_School.Domain.Enums.Role.Author;
 			_repository.Employees.Update(entity);
 			return await _repository.SaveChanges() > 0;

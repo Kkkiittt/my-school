@@ -1,12 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Dtos.Common;
-using MySchool.Services.Dtos.Students;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
-using MySchool.Services.Service;
-using MySchool.Services.Service.Common;
 
 namespace My_School.Controllers;
 
