@@ -21,7 +21,8 @@ public class ConfirmationService : IConfirmationService
 
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
-		int? code = _casher.Get(dto.Id);
+		var email = (await _repository.Employees.FindByIdAsync(dto.Id)).Email;
+		int? code = _casher.Get(email);
 		if(code == null)
 			return false;
 		if(code != dto.Code)
@@ -34,21 +35,20 @@ public class ConfirmationService : IConfirmationService
 		return await _repository.SaveChanges() > 0;
 	}
 
-	public async Task<bool> SendCode(long authorId)
+	public async Task<bool> SendCode(string email)
 	{
-		try
-		{
-			My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(authorId);
-			string phone = entity!.Email;
+		//try
+		//{
+
 			Random rndm = new Random();
 			int code = rndm.Next(100_000, 999_999);
-			_ = await _emailManager.SendCode(phone, code);
-			_casher.Place(entity.Id, code, 600);
+			_ = await _emailManager.SendCode(email, code);
+			_casher.Place(email, code, 600);
 			return true;
-		}
-		catch
-		{
-			return false;
-		}
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 }
