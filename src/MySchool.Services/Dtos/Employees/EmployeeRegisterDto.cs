@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Http;
 using My_School.Domain.Enums;
 using My_School.Domain.Models.Employees;
 
+using MySchool.Services.Attributes;
+
 namespace MySchool.Services.Dtos.Employees;
 
 public class EmployeeRegisterDto
 {
-	[Required, Phone] public string Phone { get; set; } = string.Empty;
+	[Required, EmailAddress] public string Email { get; set; } = string.Empty;
 	[Required] public string Name { get; set; } = string.Empty;
 	[Required] public string Password { get; set; } = string.Empty;
 	public IFormFile? Image { get; set; }
@@ -17,10 +19,10 @@ public class EmployeeRegisterDto
 	{
 		return new Employee()
 		{
-			Phone = dto.Phone,
+			Email = dto.Email,
 			Name = dto.Name,
 			Acted = DateTime.MinValue,
-			PhoneVerified = false,
+			EmailVerified = false,
 			Role = Role.Teacher
 		};
 	}
