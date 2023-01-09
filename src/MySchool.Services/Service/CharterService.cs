@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using My_School.Domain.Entities.Charters;
 
 using MySchool.DataAccess.Interfaces;
@@ -49,7 +50,7 @@ public class CharterService : BasicService, ICharterService
 	{
 		try
 		{
-			var query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+			IQueryable<CharterShortViewModel> query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
 
 			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
 						 .ToListAsync();

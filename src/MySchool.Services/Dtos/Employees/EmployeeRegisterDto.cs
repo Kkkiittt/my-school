@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using My_School.Domain.Enums;
 using My_School.Domain.Models.Employees;
 
-using MySchool.Services.Attributes;
-
 namespace MySchool.Services.Dtos.Employees;
 
 public class EmployeeRegisterDto

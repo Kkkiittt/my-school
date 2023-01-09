@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
-using MySchool.Services.Service;
 
 namespace My_School.Controllers;
 
@@ -36,7 +36,7 @@ public class StudentsController : ControllerBase
 		[FromQuery] PaginationParams @params)
 			=> Ok(await _studentService.GetAllAsync(@params));
 
-	[HttpGet ("GetStudying")]
+	[HttpGet("GetStudying")]
 	public async Task<IActionResult> GetByStudying(
 		[FromQuery] PaginationParams @params)
 			=> Ok(await _studentService.GetStudyingAsync(@params));

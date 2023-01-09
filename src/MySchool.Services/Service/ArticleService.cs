@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
@@ -50,7 +51,7 @@ public class ArticleService : BasicService, IArticleService
 	{
 		try
 		{
-			var query = _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+			IQueryable<ArticleShortViewModel> query = _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
 
 			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
 						 .ToListAsync();
