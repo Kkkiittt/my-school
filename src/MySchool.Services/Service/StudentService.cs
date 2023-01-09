@@ -49,39 +49,39 @@ public class StudentService : BasicService, IStudentService
 
 	public async Task<StudentFullViewModel> GetByIdAsync(long id)
 	{
-		try
-		{
+		//try
+		//{
 			My_School.Domain.Entities.Students.Student? entity = await _repository.Students.FindByIdAsync(id);
 			if(entity == null)
 				throw new Exception();
 			return _viewModelHelper.ToFull(entity);
-		}
-		catch
-		{
-			throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found student on this id");
-		}
+		//}
+		//catch
+		//{
+		//	throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found student on this id");
+		//}
 	}
 
 	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync(PaginationParams @params)
 	{
-		try
-		{
+		//try
+		//{
 			IQueryable<StudentShortViewModel> query = _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
 
 			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
 						 .ToListAsync();
-		}
-		catch
-		{
-			return Enumerable.Empty<StudentShortViewModel>();
-		}
+		//}
+		//catch
+		//{
+		//	return Enumerable.Empty<StudentShortViewModel>();
+		//}
 	}
 
 	public async Task<string> LoginAsync(StudentLoginDto dto)
 	{
-		try
-		{
+		//try
+		//{
 			My_School.Domain.Entities.Students.Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id && x.Pin == _hasher.Hash(dto.Pin.ToString(), ""));
 			if(entity != null)
 			{
@@ -90,19 +90,19 @@ public class StudentService : BasicService, IStudentService
 			else
 				throw new Exception();
 
-		}
-		catch
-		{
-			throw new Exception("Something is wrong");
-		}
+		//}
+		//catch
+		//{
+		//	throw new Exception("Something is wrong");
+		//}
 
 
 	}
 
 	public async Task<StudentRegisterViewModel> RegisterAsync(StudentRegisterDto dto)
 	{
-		try
-		{
+		//try
+		//{
 
 			if(_repository.Students.GetAll().Any(x => x.Info == dto.Info))
 				throw new Exception();
@@ -117,11 +117,11 @@ public class StudentService : BasicService, IStudentService
 				Id = studentId
 			};
 
-		}
-		catch
-		{
+		//}
+		//catch
+		//{
 
-			throw new Exception("This student already exist");
-		}
+		//	throw new Exception("This student already exist");
+		//}
 	}
 }
