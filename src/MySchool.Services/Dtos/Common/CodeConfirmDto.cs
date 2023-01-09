@@ -8,7 +8,7 @@ namespace MySchool.Services.Dtos.Common;
 public class CodeConfirmDto
 {
 	[Required]
-	public long Id { get; set; }
+	public string Email { get; set; } 
 	[Required]
 	public int Code { get; set; }
 }

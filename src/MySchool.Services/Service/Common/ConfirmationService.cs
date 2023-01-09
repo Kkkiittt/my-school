@@ -21,13 +21,13 @@ public class ConfirmationService : IConfirmationService
 
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
-		var email = (await _repository.Employees.FindByIdAsync(dto.Id)).Email;
-		int? code = _casher.Get(email);
+		var email = (await _repository.Employees.FirstOrDefaultAsync(x => x.Email ==dto.Email));
+		int? code = _casher.Get(email.Email);
 		if (code == null)
 			return false;
 		if (code != dto.Code)
 			return false;
-		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(dto.Id);
+		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
 		if (entity == null)
 			return false;
 		entity.EmailVerified = true;
