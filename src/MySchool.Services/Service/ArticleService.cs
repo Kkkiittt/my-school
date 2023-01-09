@@ -1,7 +1,9 @@
-﻿using My_School.Domain.Entities.Articles;
+﻿using Microsoft.EntityFrameworkCore;
+using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
@@ -44,11 +46,14 @@ public class ArticleService : BasicService, IArticleService
 		}
 	}
 
-	public async Task<IEnumerable<ArticleShortViewModel>> GetAll()
+	public async Task<IEnumerable<ArticleShortViewModel>> GetAll(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+			var query = _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
 		{

@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
@@ -27,12 +29,15 @@ public class StudentService : BasicService, IStudentService
 		}
 	}
 
-	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync()
+	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Students.GetAll().OrderByDescending(x => x.Studying)
+			var query = _repository.Students.GetAll().OrderByDescending(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
 		{
@@ -56,12 +61,15 @@ public class StudentService : BasicService, IStudentService
 		}
 	}
 
-	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync()
+	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync(PaginationParams @params)
 	{
 		try
 		{
-			return _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
+			var query = _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
+
+			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+						 .ToListAsync();
 		}
 		catch
 		{

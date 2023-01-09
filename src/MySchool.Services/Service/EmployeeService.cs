@@ -35,8 +35,6 @@ public class EmployeeService : BasicService, IEmployeeService
 			throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
 
 		bool hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
-		if(hashResult)
-		var hashResult = _hasher.Verify(dto.Password, employee.Password, employee.Phone);
 		if (hashResult && employee.PhoneVerified)
 		{
 			return _authManager.GenerateToken(employee);

@@ -24,7 +24,7 @@ builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IHasher, Hasher>();
 builder.Services.AddScoped<IPaginatorService, PaginatorService>();
 builder.Services.AddScoped<IPhoneService, PhoneService>();
-builder.Services.AddScoped<SmsManager, SmsManager>();
+//builder.Services.AddScoped<SmsManager, SmsManager>();
 builder.Services.AddScoped<IViewModelHelper, ViewModelHelper>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ICharterService, CharterService>();
