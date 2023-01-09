@@ -22,70 +22,70 @@ public class ArticleService : BasicService, IArticleService
 
 	public async Task<bool> CreateAsync(ArticleCreateDto dto)
 	{
-		try
-		{
+		//try
+		//{
 			Article article = await _dtoHelper.ToEntity(dto);
 			_repository.Articles.Add(article);
 			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			return false;
-		}
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 
 	public async Task<bool> DeleteByIdAsync(long id)
 	{
-		try
-		{
+		//try
+		//{
 			_repository.Articles.Delete(id);
 			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			return false;
-		}
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 
 	public async Task<IEnumerable<ArticleShortViewModel>> GetAll(PaginationParams @params)
 	{
-		try
-		{
+		//try
+		//{
 			IQueryable<ArticleShortViewModel> query = _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
 
 			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
 						 .ToListAsync();
-		}
-		catch
-		{
-			return Enumerable.Empty<ArticleShortViewModel>();
-		}
+		//}
+		//catch
+		//{
+		//	return Enumerable.Empty<ArticleShortViewModel>();
+		//}
 	}
 
 	public async Task<IEnumerable<ArticleShortViewModel>> GetByAuthor(long authorId)
 	{
-		try
-		{
+		//try
+		//{
 			return _repository.Articles.Where(x => x.EmployeeId == authorId).OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
-		}
-		catch
-		{
-			return Enumerable.Empty<ArticleShortViewModel>();
-		}
+		//}
+		//catch
+		//{
+		//	return Enumerable.Empty<ArticleShortViewModel>();
+		//}
 	}
 
 	public async Task<ArticleFullViewModel> GetById(long id)
 	{
-		try
-		{
+		//try
+		//{
 			Article? entity = await _repository.Articles.FindByIdAsync(id);
 			if(entity == null)
 				throw new Exception();
 			return _viewModelHelper.ToFull(entity);
-		}
-		catch
-		{
-			throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found article on this Id");
-		}
+		//}
+		//catch
+		//{
+		//	throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found article on this Id");
+		//}
 	}
 }

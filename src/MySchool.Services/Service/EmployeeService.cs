@@ -17,15 +17,15 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<bool> DeleteByIdAsync(long id)
 	{
-		try
-		{
+		//try
+		//{
 			_repository.Employees.Delete(id);
 			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			return false;
-		}
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
@@ -44,24 +44,24 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<bool> MakeAuthor(long id)
 	{
-		try
-		{
+		//try
+		//{
 			My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(id);
 			entity.Role = My_School.Domain.Enums.Role.Author;
 			_repository.Employees.Update(entity);
 			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			throw new Exception("Command failed");
-		}
+		//}
+		//catch
+		//{
+		//	throw new Exception("Command failed");
+		//}
 
 	}
 
 	public async Task<bool> RegisterAsync(EmployeeRegisterDto dto)
 	{
-		try
-		{
+		//try
+		//{
 			if(_repository.Employees.GetAll().Any(x => x.Email == dto.Email))
 			{
 				throw new Exception();
@@ -69,10 +69,10 @@ public class EmployeeService : BasicService, IEmployeeService
 			My_School.Domain.Models.Employees.Employee entity = await _dtoHelper.ToEntity(dto);
 			_repository.Employees.Add(entity);
 			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			return false;
-		}
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 }
