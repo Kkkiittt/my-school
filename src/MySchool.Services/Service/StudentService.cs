@@ -66,7 +66,7 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-			IQueryable<StudentShortViewModel> query = _repository.Students.Where(x => x.Studying == true).OrderByDescending(x => x.Studying)
+			IQueryable<StudentShortViewModel> query = _repository.Students.Where(x => x.Studying)
 				.Select(x => _viewModelHelper.ToShort(x));
 
 			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
