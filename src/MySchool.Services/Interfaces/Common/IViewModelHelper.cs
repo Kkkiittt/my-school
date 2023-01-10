@@ -28,6 +28,7 @@ namespace MySchool.Services.Interfaces.Common
 
 		public StudentFullViewModel ToFull(Student entity);
 
+		public EmployeeShortViewModel ToShort(Employee entity);
 
 		public EmployeeFullViewModel ToFull(Employee entity);
 

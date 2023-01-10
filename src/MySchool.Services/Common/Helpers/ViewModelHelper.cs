@@ -26,8 +26,7 @@ public class ViewModelHelper : IViewModelHelper
 
 	public ArticleShortViewModel ToShort(Article entity)
 	{
-		ArticleShortViewModel shortVM = entity;
-		return shortVM;
+		return entity;
 	}
 	public ArticleFullViewModel ToFull(Article entity)
 	{
@@ -37,8 +36,7 @@ public class ViewModelHelper : IViewModelHelper
 	}
 	public CharterShortViewModel ToShort(Charter entity)
 	{
-		CharterShortViewModel charterVM = entity;
-		return charterVM;
+		return entity;
 	}
 
 	public CharterFullViewModel ToFull(Charter entity)
@@ -71,7 +69,10 @@ public class ViewModelHelper : IViewModelHelper
 	}
 	public CommentViewModel ToShort(Comment entity)
 	{
-		CommentViewModel commentVM = entity;
-		return commentVM;
+		return entity;
+	}
+	public EmployeeShortViewModel ToShort(Employee entity)
+	{
+		return entity;
 	}
 }
