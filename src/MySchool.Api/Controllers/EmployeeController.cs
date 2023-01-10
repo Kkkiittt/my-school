@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Employees;
 using MySchool.Services.Interfaces;
 
@@ -11,6 +12,7 @@ namespace My_School.Controllers;
 public class EmployeeController : ControllerBase
 {
 	private readonly IEmployeeService _employeeService;
+	private readonly int _pageSize = 20;
 
 	public EmployeeController(IEmployeeService employeeService)
 	{
@@ -44,5 +46,12 @@ public class EmployeeController : ControllerBase
 	public async Task<IActionResult> MakeAuthorAsync(long id)
 	{
 		return Ok(await _employeeService.MakeAuthor(id));
+	}
+
+	[HttpGet("GetEmployees")]
+	[Authorize(Roles = "Author, Teacher, Admin")]
+	public async Task<IActionResult> GetEmployeesAsync(int page = 1)
+	{
+		return Ok(await _employeeService.GetAll(new PaginationParams(page, _pageSize)));
 	}
 }
