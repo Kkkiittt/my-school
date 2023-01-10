@@ -15,14 +15,14 @@ public class GenericRepository<T> : BaseRepository<T>, IGenericRepository<T> whe
 	{
 	}
 
-	public IQueryable<T> GetAll()
+	public virtual IQueryable<T> GetAll()
 	{
-		return _dbSet.AsNoTracking();
+		return _dbSet;
 	}
 
-	public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+	public virtual IQueryable<T> Where(Expression<Func<T, bool>> expression)
 	{
-		return _dbSet.Where(expression).AsNoTracking();
+		return _dbSet.Where(expression);
 	}
 
 }
