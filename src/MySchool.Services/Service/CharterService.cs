@@ -3,7 +3,6 @@
 using My_School.Domain.Entities.Charters;
 
 using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Charters;
 using MySchool.Services.Interfaces;
@@ -23,9 +22,9 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-			Charter charter = await _dtoHelper.ToEntity(dto);
-			_repository.Charters.Add(charter);
-			return await _repository.SaveChanges() > 0;
+		Charter charter = await _dtoHelper.ToEntity(dto);
+		_repository.Charters.Add(charter);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -37,8 +36,8 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-			_repository.Charters.Delete(id);
-			return await _repository.SaveChanges() > 0;
+		_repository.Charters.Delete(id);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -50,10 +49,10 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-			IQueryable<CharterShortViewModel> query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+		IQueryable<CharterShortViewModel> query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
 
-			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-						 .ToListAsync();
+		return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+					 .ToListAsync();
 		//}
 		//catch
 		//{
@@ -65,7 +64,7 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-			return await _repository.Charters.FindByIdAsync(id);
+		return await _repository.Charters.FindByIdAsync(id);
 		//}
 		//catch
 		//{
@@ -77,7 +76,8 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-			return _repository.Charters.Where(x => x.StudentId == studentId).Select(x => _viewModelHelper.ToShort(x));
+		var page = await _repository.Charters.Where(x => x.StudentId == studentId).ToListAsync();
+		return page.Select(x=>_viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{

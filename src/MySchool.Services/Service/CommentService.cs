@@ -1,4 +1,6 @@
-﻿using MySchool.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+
+using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
@@ -18,8 +20,11 @@ public class CommentService : BasicService, ICommentService
 	{
 		//try
 		//{
-			_repository.Comments.Add(await _dtoHelper.ToEntity(dto));
-			return await _repository.SaveChanges() > 0;
+		_repository.Comments.Add(await _dtoHelper.ToEntity(dto));
+		var student = await _repository.Students.FindByIdAsync(dto.StudentId);
+		student.Acted = DateTime.Now;
+		_repository.Students.Update(student);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -31,8 +36,8 @@ public class CommentService : BasicService, ICommentService
 	{
 		//try
 		//{
-			_repository.Comments.Delete(articleId);
-			return await _repository.SaveChanges() > 0;
+		_repository.Comments.Delete(articleId);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -44,7 +49,8 @@ public class CommentService : BasicService, ICommentService
 	{
 		//try
 		//{
-			return _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+		var page = await _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{

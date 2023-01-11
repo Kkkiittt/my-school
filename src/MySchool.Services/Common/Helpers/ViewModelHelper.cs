@@ -46,9 +46,9 @@ public class ViewModelHelper : IViewModelHelper
 		return charterVM;
 	}
 
-	public StudentShortViewModel ToShort(Student entity)
+	public ViewModels.Students.StudentShortViewModel ToShort(My_School.Domain.Entities.Students.Student entity)
 	{
-		StudentShortViewModel studentVM = entity;
+		ViewModels.Students.StudentShortViewModel studentVM = entity;
 		studentVM.Charters = _repository.Charters.GetAll().Count(x => x.StudentId == entity.Id);
 		return studentVM;
 	}

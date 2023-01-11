@@ -1,7 +1,6 @@
 ﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
 using My_School.Domain.Entities.Comments;
-using My_School.Domain.Entities.Students;
 using My_School.Domain.Models.Employees;
 
 using MySchool.Services.ViewModels;
@@ -24,9 +23,9 @@ namespace MySchool.Services.Interfaces.Common
 
 		public CharterFullViewModel ToFull(Charter entity);
 
-		public StudentShortViewModel ToShort(Student entity);
+		public ViewModels.Students.StudentShortViewModel ToShort(My_School.Domain.Entities.Students.Student entity);
 
-		public StudentFullViewModel ToFull(Student entity);
+		public StudentFullViewModel ToFull(My_School.Domain.Entities.Students.Student entity);
 
 		public EmployeeShortViewModel ToShort(Employee entity);
 

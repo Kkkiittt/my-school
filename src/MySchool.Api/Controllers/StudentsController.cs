@@ -50,4 +50,11 @@ public class StudentsController : ControllerBase
 	{
 		return Ok(await _studentService.DeleteByIdAsync(id));
 	}
+
+	[HttpGet("GetFull")]
+	[Authorize(Roles = "Author, Admin")]
+	public async Task<IActionResult> GetFullAsync(int page)
+	{
+		return Ok(await _studentService.GetFullAsync(new PaginationParams(page, _pageSize)));
+	}
 }

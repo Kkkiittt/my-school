@@ -1,7 +1,5 @@
 ﻿using System.Linq.Expressions;
 
-using Microsoft.EntityFrameworkCore;
-
 using My_School.Domain.Models.Common;
 
 using MySchool.DataAccess.DbContexts;

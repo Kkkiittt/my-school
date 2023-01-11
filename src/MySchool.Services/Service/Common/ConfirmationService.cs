@@ -21,14 +21,14 @@ public class ConfirmationService : IConfirmationService
 
 	public async Task<bool> ConfirmCode(CodeConfirmDto dto)
 	{
-		var email = (await _repository.Employees.FirstOrDefaultAsync(x => x.Email ==dto.Email));
+		My_School.Domain.Models.Employees.Employee? email = (await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email));
 		int? code = _casher.Get(email.Email);
-		if (code == null)
+		if(code == null)
 			return false;
-		if (code != dto.Code)
+		if(code != dto.Code)
 			return false;
 		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
-		if (entity == null)
+		if(entity == null)
 			return false;
 		entity.EmailVerified = true;
 		_repository.Employees.Update(entity);
@@ -39,8 +39,8 @@ public class ConfirmationService : IConfirmationService
 	{
 		//try
 		//{
-		var entity = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == email);
-		if (entity == null)
+		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == email);
+		if(entity == null)
 			throw new Exception("User Not Found");
 		Random rndm = new Random();
 		int code = rndm.Next(100_000, 999_999);

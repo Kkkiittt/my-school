@@ -1,5 +1,7 @@
 using System.Net;
 
+using Microsoft.EntityFrameworkCore;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Utils;
@@ -32,7 +34,8 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<IEnumerable<EmployeeShortViewModel>> GetAll(PaginationParams @params)
 	{
-		return _repository.Employees.GetAll().Select(x => _viewModelHelper.ToShort(x)).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize);
+		var page = await _repository.Employees.GetAll().Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 	}
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
