@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
+using My_School.Domain.Entities.Students;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
@@ -78,7 +80,7 @@ public class StudentService : BasicService, IStudentService
 		//{
 		Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id);
 
-		if (entity == null)
+		if(entity == null)
 			throw new Exception("student is null");
 		string passwordhashed = _hasher.Hash(dto.Pin.ToString(), "");
 		if(entity.Pin != passwordhashed)
