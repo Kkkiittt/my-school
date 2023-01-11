@@ -5,8 +5,8 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+using My_School.Domain.Entities.Employees;
 using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Employees;
 
 using MySchool.Services.Interfaces.Common;
 

@@ -1,5 +1,5 @@
-﻿using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Common;
+﻿using My_School.Domain.Common;
+using My_School.Domain.Entities.Students;
 
 namespace My_School.Domain.Entities.Charters;
 

@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 
+using My_School.Domain.Entities.Students;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Service;
@@ -78,7 +80,7 @@ public class StudentService : BasicService, IStudentService
 		//{
 		Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id);
 
-		if (entity == null)
+		if(entity == null)
 			throw new Exception("student is null");
 		string passwordhashed = _hasher.Hash(dto.Pin.ToString(), "");
 		if(entity.Pin != passwordhashed)
@@ -106,7 +108,7 @@ public class StudentService : BasicService, IStudentService
 		entity.Pin = _hasher.Hash(entity.Pin, "");
 		_repository.Students.Add(entity);
 		_ = await _repository.SaveChanges();
-		long studentId = _repository.Students.GetAll().FirstOrDefaultAsync(x => x.Info == dto.Info).Id;
+		long studentId = (await _repository.Students.GetAll().FirstAsync(x => x.Pin == entity.Pin)).Id;
 		return new StudentRegisterViewModel
 		{
 			Pin = int.Parse(PinCode),
@@ -123,7 +125,7 @@ public class StudentService : BasicService, IStudentService
 
 	public async Task<IEnumerable<Student>> GetFullAsync(PaginationParams @params)
 	{
-		var page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		List<Student> page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
 		return page;
 	}
 }

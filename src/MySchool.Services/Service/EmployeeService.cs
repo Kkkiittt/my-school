@@ -2,12 +2,14 @@ using System.Net;
 
 using Microsoft.EntityFrameworkCore;
 
+using My_School.Domain.Entities.Employees;
+
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Employees;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Employees;
 
 namespace MySchool.Services.Service;
@@ -34,13 +36,13 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<IEnumerable<EmployeeShortViewModel>> GetAll(PaginationParams @params)
 	{
-		var page = await _repository.Employees.GetAll().Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		List<Employee> page = await _repository.Employees.GetAll().Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
 		return page.Select(x => _viewModelHelper.ToShort(x));
 	}
 
 	public async Task<string> LoginAsync(EmployeeLoginDto dto)
 	{
-		My_School.Domain.Models.Employees.Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
+		Employee? employee = await _repository.Employees.FirstOrDefaultAsync(x => x.Email == dto.Email);
 		if(employee is null)
 			throw new StatusCodeException(HttpStatusCode.NotFound, "Employee not found, Phone Number is incorrect!");
 		if(!employee.EmailVerified)
@@ -58,7 +60,7 @@ public class EmployeeService : BasicService, IEmployeeService
 	{
 		//try
 		//{
-		My_School.Domain.Models.Employees.Employee? entity = await _repository.Employees.FindByIdAsync(id);
+		Employee? entity = await _repository.Employees.FindByIdAsync(id);
 		entity.Role = My_School.Domain.Enums.Role.Author;
 		_repository.Employees.Update(entity);
 		return await _repository.SaveChanges() > 0;
@@ -78,7 +80,7 @@ public class EmployeeService : BasicService, IEmployeeService
 		{
 			throw new Exception();
 		}
-		My_School.Domain.Models.Employees.Employee entity = await _dtoHelper.ToEntity(dto);
+		Employee entity = await _dtoHelper.ToEntity(dto);
 		_repository.Employees.Add(entity);
 		return await _repository.SaveChanges() > 0;
 		//}

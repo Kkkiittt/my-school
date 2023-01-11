@@ -1,9 +1,9 @@
+using My_School.Domain.Common;
 using My_School.Domain.Entities.Articles;
-using My_School.Domain.Models.Common;
 
 using MySchool.Services.ViewModels.Comments;
 
-namespace MySchool.Services.ViewModels;
+namespace MySchool.Services.ViewModels.Articles;
 
 
 public class ArticleFullViewModel : BaseEntity

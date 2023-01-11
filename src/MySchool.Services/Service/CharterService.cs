@@ -5,8 +5,8 @@ using My_School.Domain.Entities.Charters;
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Charters;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Charters;
 
 namespace MySchool.Services.Service;
@@ -76,8 +76,8 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-		var page = await _repository.Charters.Where(x => x.StudentId == studentId).ToListAsync();
-		return page.Select(x=>_viewModelHelper.ToShort(x));
+		List<Charter> page = await _repository.Charters.Where(x => x.StudentId == studentId).ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{

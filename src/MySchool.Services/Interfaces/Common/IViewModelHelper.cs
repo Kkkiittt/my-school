@@ -1,9 +1,8 @@
 ﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
 using My_School.Domain.Entities.Comments;
-using My_School.Domain.Models.Employees;
+using My_School.Domain.Entities.Employees;
 
-using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 using MySchool.Services.ViewModels.Charters;
 using MySchool.Services.ViewModels.Comments;

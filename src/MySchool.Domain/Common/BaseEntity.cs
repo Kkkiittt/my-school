@@ -1,4 +1,4 @@
-﻿namespace My_School.Domain.Models.Common;
+﻿namespace My_School.Domain.Common;
 
 public class BaseEntity
 {

@@ -1,6 +1,6 @@
 ﻿using MySchool.Services.Dtos.Common;
 
-namespace MySchool.Services.Interfaces.Common;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface IConfirmationService
 {

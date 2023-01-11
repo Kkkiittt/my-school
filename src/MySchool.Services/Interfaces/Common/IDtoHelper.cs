@@ -1,8 +1,8 @@
 ﻿using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Charters;
 using My_School.Domain.Entities.Comments;
+using My_School.Domain.Entities.Employees;
 using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Employees;
 
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Dtos.Charters;

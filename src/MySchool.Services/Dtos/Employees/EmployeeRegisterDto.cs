@@ -2,8 +2,8 @@
 
 using Microsoft.AspNetCore.Http;
 
+using My_School.Domain.Entities.Employees;
 using My_School.Domain.Enums;
-using My_School.Domain.Models.Employees;
 
 namespace MySchool.Services.Dtos.Employees;
 

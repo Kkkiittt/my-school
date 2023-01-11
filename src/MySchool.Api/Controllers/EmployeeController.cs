@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Employees;
-using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Services;
 
 namespace My_School.Controllers;
 

@@ -1,6 +1,6 @@
-﻿using My_School.Domain.Entities.Articles;
+﻿using My_School.Domain.Common;
+using My_School.Domain.Entities.Articles;
 using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Common;
 
 namespace My_School.Domain.Entities.Comments;
 

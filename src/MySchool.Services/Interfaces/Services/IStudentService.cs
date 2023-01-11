@@ -4,7 +4,7 @@ using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
 using MySchool.Services.ViewModels.Students;
 
-namespace MySchool.Services.Interfaces;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface IStudentService
 {

@@ -2,7 +2,7 @@
 using MySchool.Services.Dtos.Employees;
 using MySchool.Services.ViewModels.Employees;
 
-namespace MySchool.Services.Interfaces;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface IEmployeeService
 {

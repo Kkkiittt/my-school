@@ -2,8 +2,8 @@
 
 using MySchool.DataAccess.Interfaces;
 using MySchool.Services.Dtos.Comments;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Comments;
 
 namespace MySchool.Services.Service;
@@ -21,7 +21,7 @@ public class CommentService : BasicService, ICommentService
 		//try
 		//{
 		_repository.Comments.Add(await _dtoHelper.ToEntity(dto));
-		var student = await _repository.Students.FindByIdAsync(dto.StudentId);
+		My_School.Domain.Entities.Students.Student? student = await _repository.Students.FindByIdAsync(dto.StudentId);
 		student.Acted = DateTime.Now;
 		_repository.Students.Update(student);
 		return await _repository.SaveChanges() > 0;
@@ -49,7 +49,7 @@ public class CommentService : BasicService, ICommentService
 	{
 		//try
 		//{
-		var page = await _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+		List<My_School.Domain.Entities.Comments.Comment> page = await _repository.Comments.Where(x => x.ArticleId == articleId).OrderByDescending(x => x.CreatedAt).ToListAsync();
 		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
