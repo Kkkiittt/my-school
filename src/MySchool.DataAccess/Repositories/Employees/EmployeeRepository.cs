@@ -1,4 +1,4 @@
-﻿using My_School.Domain.Models.Employees;
+﻿using My_School.Domain.Entities.Employees;
 
 using MySchool.DataAccess.DbContexts;
 using MySchool.DataAccess.Interfaces.Employees;

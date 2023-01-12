@@ -1,16 +1,16 @@
+using My_School.Domain.Common;
 using My_School.Domain.Enums;
-using My_School.Domain.Models.Common;
 
-namespace My_School.Domain.Models.Employees;
+namespace My_School.Domain.Entities.Employees;
 
 
 public class Employee : BaseEntity
 {
-	public string Name { get; set; } = String.Empty;
+	public string Name { get; set; } = string.Empty;
 
-	public string Password { get; set; } = String.Empty;
+	public string Password { get; set; } = string.Empty;
 
-	public string Email { get; set; } = String.Empty;
+	public string Email { get; set; } = string.Empty;
 
 	public bool EmailVerified { get; set; }
 

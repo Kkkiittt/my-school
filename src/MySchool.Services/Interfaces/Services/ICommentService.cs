@@ -1,7 +1,7 @@
 ﻿using MySchool.Services.Dtos.Comments;
 using MySchool.Services.ViewModels.Comments;
 
-namespace MySchool.Services.Interfaces;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface ICommentService
 {

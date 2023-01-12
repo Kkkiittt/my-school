@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Dtos.Comments;
-using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Services;
 
 namespace My_School.Controllers;
 

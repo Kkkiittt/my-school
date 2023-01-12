@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using My_School.Domain.Entities.Students;
+
 using MySchool.Services.Common.Utils;
-using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Dtos.Charters;
-using MySchool.Services.Interfaces;
-using MySchool.Services.Service;
+using MySchool.Services.Interfaces.Services;
 
 namespace My_School.Controllers;
 

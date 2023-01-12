@@ -1,5 +1,5 @@
-﻿using My_School.Domain.Entities.Students;
-using My_School.Domain.Models.Employees;
+﻿using My_School.Domain.Entities.Employees;
+using My_School.Domain.Entities.Students;
 
 namespace MySchool.Services.Interfaces.Common
 {

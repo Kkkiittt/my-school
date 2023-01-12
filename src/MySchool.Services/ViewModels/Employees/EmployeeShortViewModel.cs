@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using My_School.Domain.Models.Common;
-using My_School.Domain.Models.Employees;
+﻿using My_School.Domain.Common;
+using My_School.Domain.Entities.Employees;
 
 namespace MySchool.Services.ViewModels.Employees;
 

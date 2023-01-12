@@ -1,8 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-using Microsoft.EntityFrameworkCore;
-
-using My_School.Domain.Models.Common;
+using My_School.Domain.Common;
 
 using MySchool.DataAccess.DbContexts;
 using MySchool.DataAccess.Interfaces;

@@ -1,4 +1,4 @@
-﻿using My_School.Domain.Models.Common;
+﻿using My_School.Domain.Common;
 
 namespace MySchool.Services.ViewModels.Students;
 

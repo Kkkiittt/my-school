@@ -2,7 +2,7 @@
 using MySchool.Services.Dtos.Charters;
 using MySchool.Services.ViewModels.Charters;
 
-namespace MySchool.Services.Interfaces;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface ICharterService
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
-using MySchool.Services.Interfaces;
+using MySchool.Services.Interfaces.Services;
 
 namespace My_School.Controllers;
 
@@ -49,5 +49,12 @@ public class StudentsController : ControllerBase
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _studentService.DeleteByIdAsync(id));
+	}
+
+	[HttpGet("GetFull")]
+	[Authorize(Roles = "Author, Admin")]
+	public async Task<IActionResult> GetFullAsync(int page)
+	{
+		return Ok(await _studentService.GetFullAsync(new PaginationParams(page, _pageSize)));
 	}
 }

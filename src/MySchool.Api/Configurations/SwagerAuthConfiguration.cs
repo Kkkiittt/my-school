@@ -6,7 +6,7 @@ namespace My_School.Configurations
 	{
 		public static void ConfigureSwaggerAuthorize(this IServiceCollection services)
 		{
-			services.AddSwaggerGen(c =>
+			_ = services.AddSwaggerGen(c =>
 			{
 				c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
 				{

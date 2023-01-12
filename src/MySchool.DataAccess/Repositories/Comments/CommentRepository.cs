@@ -1,7 +1,5 @@
 ﻿using System.Linq.Expressions;
 
-using Microsoft.EntityFrameworkCore;
-
 using My_School.Domain.Entities.Comments;
 
 using MySchool.DataAccess.DbContexts;
@@ -17,11 +15,11 @@ public class CommentRepository : GenericRepository<Comment>, ICommentRepository
 	public override IQueryable<Comment> GetAll()
 	{
 		return base.GetAll();
-			//.Include(c => c.Student).Include(c => c.Article);
+		//.Include(c => c.Student).Include(c => c.Article);
 	}
 	public override IQueryable<Comment> Where(Expression<Func<Comment, bool>> expression)
 	{
 		return base.Where(expression);
-			//.Include(c => c.Student).Include(c => c.Article);
+		//.Include(c => c.Student).Include(c => c.Article);
 	}
 }

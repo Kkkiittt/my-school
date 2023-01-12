@@ -1,6 +1,6 @@
+using My_School.Domain.Common;
+using My_School.Domain.Entities.Employees;
 using My_School.Domain.Enums;
-using My_School.Domain.Models.Common;
-using My_School.Domain.Models.Employees;
 
 using MySchool.Services.ViewModels.Articles;
 

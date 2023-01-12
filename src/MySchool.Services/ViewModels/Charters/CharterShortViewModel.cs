@@ -1,5 +1,5 @@
-﻿using My_School.Domain.Entities.Charters;
-using My_School.Domain.Models.Common;
+﻿using My_School.Domain.Common;
+using My_School.Domain.Entities.Charters;
 
 namespace MySchool.Services.ViewModels.Charters;
 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using MySchool.Services.Dtos.Common;
-using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 
 namespace My_School.Controllers;
 

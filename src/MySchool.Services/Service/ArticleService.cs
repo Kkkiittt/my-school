@@ -3,12 +3,10 @@
 using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
-using MySchool.Services.ViewModels;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Articles;
 
 namespace MySchool.Services.Service;
@@ -24,9 +22,12 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-			Article article = await _dtoHelper.ToEntity(dto);
-			_repository.Articles.Add(article);
-			return await _repository.SaveChanges() > 0;
+		Article article = await _dtoHelper.ToEntity(dto);
+		_repository.Articles.Add(article);
+		My_School.Domain.Entities.Employees.Employee? employee = await _repository.Employees.FindByIdAsync(article.EmployeeId);
+		employee.Acted = DateTime.Now;
+		_repository.Employees.Update(employee);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -38,8 +39,8 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-			_repository.Articles.Delete(id);
-			return await _repository.SaveChanges() > 0;
+		_repository.Articles.Delete(id);
+		return await _repository.SaveChanges() > 0;
 		//}
 		//catch
 		//{
@@ -51,10 +52,10 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-			IQueryable<ArticleShortViewModel> query = _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+		List<Article> page = await _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+					 .ToListAsync();
 
-			return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-						 .ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{
@@ -66,7 +67,8 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-			return _repository.Articles.Where(x => x.EmployeeId == authorId).OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
+		List<Article> page = await _repository.Articles.Where(x => x.EmployeeId == authorId).OrderByDescending(x => x.CreatedAt).ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{
@@ -78,10 +80,13 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-			Article? entity = await _repository.Articles.FindByIdAsync(id);
-			if(entity == null)
-				throw new Exception();
-			return _viewModelHelper.ToFull(entity);
+		Article? entity = await _repository.Articles.FindByIdAsync(id);
+		if(entity == null)
+			throw new Exception("Not found");
+		entity.Views += 1;
+		_repository.Articles.Update(entity);
+		_ = await _repository.SaveChanges();
+		return _viewModelHelper.ToFull(entity);
 		//}
 		//catch
 		//{

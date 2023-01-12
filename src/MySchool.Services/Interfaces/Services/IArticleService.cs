@@ -1,9 +1,8 @@
 ﻿using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
-using MySchool.Services.ViewModels;
 using MySchool.Services.ViewModels.Articles;
 
-namespace MySchool.Services.Interfaces;
+namespace MySchool.Services.Interfaces.Services;
 
 public interface IArticleService
 {

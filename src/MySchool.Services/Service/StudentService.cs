@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using My_School.Domain.Entities.Students;
 
 using MySchool.DataAccess.Interfaces;
-using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Students;
-using MySchool.Services.Interfaces;
 using MySchool.Services.Interfaces.Common;
+using MySchool.Services.Interfaces.Services;
 using MySchool.Services.ViewModels.Students;
 
 namespace MySchool.Services.Service;
@@ -21,29 +20,29 @@ public class StudentService : BasicService, IStudentService
 
 	public async Task<bool> DeleteByIdAsync(long id)
 	{
-		try
-		{
-			_repository.Students.Delete(id);
-			return await _repository.SaveChanges() > 0;
-		}
-		catch
-		{
-			return false;
-		}
+		//try
+		//{
+		_repository.Students.Delete(id);
+		return await _repository.SaveChanges() > 0;
+		//}
+		//catch
+		//{
+		//	return false;
+		//}
 	}
 
 	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync(PaginationParams @params)
 	{
-		try
-		{
-			var page = await _repository.Students.GetAll().OrderByDescending(x => x.Studying).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-						 .ToListAsync();
-			return page.Select(x => _viewModelHelper.ToShort(x));
-		}
-		catch
-		{
-			return Enumerable.Empty<StudentShortViewModel>();
-		}
+		//try
+		//{
+		List<Student> page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
+					 .ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
+		//}
+		//catch
+		//{
+		//	return Enumerable.Empty<StudentShortViewModel>();
+		//}
 
 	}
 
@@ -51,7 +50,7 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-		My_School.Domain.Entities.Students.Student? entity = await _repository.Students.FindByIdAsync(id);
+		Student? entity = await _repository.Students.FindByIdAsync(id);
 		if(entity == null)
 			throw new Exception();
 		return _viewModelHelper.ToFull(entity);
@@ -66,11 +65,8 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-		IQueryable<StudentShortViewModel> query = _repository.Students.Where(x => x.Studying)
-			.Select(x => _viewModelHelper.ToShort(x));
-
-		return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-					 .ToListAsync();
+		List<Student> page = await _repository.Students.Where(x => x.Studying).OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{
@@ -82,11 +78,11 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-		My_School.Domain.Entities.Students.Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id);
+		Student? entity = _repository.Students.GetAll().FirstOrDefault(x => x.Id == dto.Id);
 
 		if(entity == null)
 			throw new Exception("student is null");
-		var passwordhashed = _hasher.Hash(dto.Pin.ToString(), "");
+		string passwordhashed = _hasher.Hash(dto.Pin.ToString(), "");
 		if(entity.Pin != passwordhashed)
 			throw new Exception("Password is incorrect");
 		return _authManager.GenerateToken(entity);
@@ -107,12 +103,12 @@ public class StudentService : BasicService, IStudentService
 
 		if(_repository.Students.GetAll().Any(x => x.Info == dto.Info))
 			throw new Exception();
-		My_School.Domain.Entities.Students.Student entity = await _dtoHelper.ToEntity(dto);
+		Student entity = await _dtoHelper.ToEntity(dto);
 		string PinCode = entity.Pin;
 		entity.Pin = _hasher.Hash(entity.Pin, "");
 		_repository.Students.Add(entity);
-		await _repository.SaveChanges();
-		long studentId = _repository.Students.GetAll().FirstOrDefaultAsync(x => x.Info == dto.Info).Id;
+		_ = await _repository.SaveChanges();
+		long studentId = (await _repository.Students.GetAll().FirstAsync(x => x.Pin == entity.Pin)).Id;
 		return new StudentRegisterViewModel
 		{
 			Pin = int.Parse(PinCode),
@@ -125,5 +121,11 @@ public class StudentService : BasicService, IStudentService
 
 		//	throw new Exception("This student already exist");
 		//}
+	}
+
+	public async Task<IEnumerable<Student>> GetFullAsync(PaginationParams @params)
+	{
+		List<Student> page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		return page;
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+using My_School.Domain.Entities.Employees;
 using My_School.Domain.Enums;
-using My_School.Domain.Models.Employees;
 
-namespace My_School.DataAccess.Configurations;
+namespace MySchool.DataAccess.Configurations;
 
 public class SuperAdminConfiguration : IEntityTypeConfiguration<Employee>
 {

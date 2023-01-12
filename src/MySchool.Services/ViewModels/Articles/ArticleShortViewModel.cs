@@ -1,5 +1,5 @@
+using My_School.Domain.Common;
 using My_School.Domain.Entities.Articles;
-using My_School.Domain.Models.Common;
 
 namespace MySchool.Services.ViewModels.Articles;
 
