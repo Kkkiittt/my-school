@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
 
+using Microsoft.EntityFrameworkCore;
+
 using My_School.Domain.Entities.Comments;
 
 using MySchool.DataAccess.DbContexts;

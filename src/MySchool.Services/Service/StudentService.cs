@@ -31,6 +31,13 @@ public class StudentService : BasicService, IStudentService
 		//}
 	}
 
+	public async Task<bool> HireByIdAsync(long id)
+	{
+		var entity = await _repository.Students.FindByIdAsync(id);
+		entity.Studying = false;
+		return await _repository.SaveChanges() > 0;
+	}
+
 	public async Task<IEnumerable<StudentShortViewModel>> GetAllAsync(PaginationParams @params)
 	{
 		//try

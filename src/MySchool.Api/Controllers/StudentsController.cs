@@ -45,7 +45,7 @@ public class StudentsController : ControllerBase
 			=> Ok(await _studentService.GetStudyingAsync(new PaginationParams(page, _pageSize)));
 
 	[HttpDelete("DeleteStudent")]
-	[Authorize(Roles = "Author, Admin")]
+	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _studentService.DeleteByIdAsync(id));
@@ -53,8 +53,15 @@ public class StudentsController : ControllerBase
 
 	[HttpGet("GetFull")]
 	[Authorize(Roles = "Author, Admin")]
-	public async Task<IActionResult> GetFullAsync(int page)
+	public async Task<IActionResult> GetFullAsync(int page = 1)
 	{
 		return Ok(await _studentService.GetFullAsync(new PaginationParams(page, _pageSize)));
+	}
+
+	[HttpDelete("HireStudent")]
+	[Authorize(Roles = "Author, Admin")]
+	public async Task<IActionResult> HireStudentAsync(int id)
+	{
+		return Ok(await _studentService.HireByIdAsync(id));
 	}
 }

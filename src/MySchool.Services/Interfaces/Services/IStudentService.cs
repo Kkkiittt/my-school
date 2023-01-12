@@ -20,5 +20,7 @@ public interface IStudentService
 
 	public Task<bool> DeleteByIdAsync(long id);
 
+	public Task<bool> HireByIdAsync(long id);
+
 	public Task<IEnumerable<Student>> GetFullAsync(PaginationParams @params);
 }
