@@ -5,6 +5,7 @@ using My_School.Domain.Entities.Charters;
 using My_School.Domain.Entities.Comments;
 using My_School.Domain.Entities.Employees;
 using My_School.Domain.Entities.Students;
+using MySchool.DataAccess.Configurations;
 
 namespace MySchool.DataAccess.DbContexts;
 
