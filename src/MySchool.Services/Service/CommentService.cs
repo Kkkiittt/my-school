@@ -10,8 +10,8 @@ namespace MySchool.Services.Service;
 
 public class CommentService : BasicService, ICommentService
 {
-	public CommentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager)
-		: base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
+	public CommentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager, IPaginatorService paginator)
+		: base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager, paginator)
 	{
 	}
 
