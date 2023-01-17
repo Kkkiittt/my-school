@@ -16,7 +16,7 @@ namespace MySchool.Services.Service;
 
 public class EmployeeService : BasicService, IEmployeeService
 {
-	public EmployeeService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
+	public EmployeeService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager, IPaginatorService paginator) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager, paginator)
 	{
 
 	}
@@ -36,7 +36,7 @@ public class EmployeeService : BasicService, IEmployeeService
 
 	public async Task<IEnumerable<EmployeeShortViewModel>> GetAll(PaginationParams @params)
 	{
-		List<Employee> page = await _repository.Employees.GetAll().Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
+		var page = await _paginator.ToPagedAsync(_repository.Employees.GetAll(), @params.PageNumber, @params.PageSize);
 		return page.Select(x => _viewModelHelper.ToShort(x));
 	}
 

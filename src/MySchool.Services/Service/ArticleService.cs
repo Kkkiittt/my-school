@@ -13,7 +13,7 @@ namespace MySchool.Services.Service;
 
 public class ArticleService : BasicService, IArticleService
 {
-	public ArticleService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
+	public ArticleService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager, IPaginatorService paginator) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager, paginator)
 	{
 
 	}
@@ -52,8 +52,7 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-		List<Article> page = await _repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-					 .ToListAsync();
+		var page = await _paginator.ToPagedAsync(_repository.Articles.GetAll().OrderByDescending(x => x.CreatedAt), @params.PageNumber, @params.PageSize);
 
 		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}

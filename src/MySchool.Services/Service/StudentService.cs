@@ -13,7 +13,7 @@ namespace MySchool.Services.Service;
 
 public class StudentService : BasicService, IStudentService
 {
-	public StudentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
+	public StudentService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager, IPaginatorService paginator) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager, paginator)
 	{
 
 	}
@@ -42,8 +42,7 @@ public class StudentService : BasicService, IStudentService
 	{
 		//try
 		//{
-		List<Student> page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-					 .ToListAsync();
+		var page = await _paginator.ToPagedAsync(_repository.Students.GetAll().OrderByDescending(x => x.Acted), @params.PageNumber, @params.PageSize);
 		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
@@ -55,17 +54,11 @@ public class StudentService : BasicService, IStudentService
 
 	public async Task<StudentFullViewModel> GetByIdAsync(long id)
 	{
-		//try
-		//{
-		Student? entity = await _repository.Students.FindByIdAsync(id);
-		if(entity == null)
-			throw new Exception();
-		return _viewModelHelper.ToFull(entity);
-		//}
-		//catch
-		//{
-		//	throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Not found student on this id");
-		//}
+			Student? entity = await _repository.Students.FindByIdAsync(id);
+			if(entity == null)
+				throw new Exception();
+			return _viewModelHelper.ToFull(entity);
+		
 	}
 
 	public async Task<IEnumerable<StudentShortViewModel>> GetStudyingAsync(PaginationParams @params)

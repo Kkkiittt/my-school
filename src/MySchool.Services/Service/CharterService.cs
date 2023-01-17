@@ -14,7 +14,7 @@ namespace MySchool.Services.Service;
 public class CharterService : BasicService, ICharterService
 {
 
-	public CharterService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager)
+	public CharterService(IUnitOfWork repository, IFileService filer, IHasher hasher, IViewModelHelper viewModelHelper, IDtoHelper dtoHelper, IAuthManager authManager, IPaginatorService paginator) : base(repository, filer, hasher, viewModelHelper, dtoHelper, authManager, paginator)
 	{
 	}
 
@@ -49,10 +49,8 @@ public class CharterService : BasicService, ICharterService
 	{
 		//try
 		//{
-		IQueryable<CharterShortViewModel> query = _repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt).Select(x => _viewModelHelper.ToShort(x));
-
-		return await query.Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize)
-					 .ToListAsync();
+		var page = await _paginator.ToPagedAsync(_repository.Charters.GetAll().OrderByDescending(x => x.CreatedAt), @params.PageNumber, @params.PageSize);
+		return page.Select(x => _viewModelHelper.ToShort(x));
 		//}
 		//catch
 		//{
