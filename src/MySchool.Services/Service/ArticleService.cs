@@ -3,6 +3,7 @@
 using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Helpers;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
 using MySchool.Services.Interfaces.Common;
@@ -40,8 +41,16 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-		_repository.Articles.Delete(id);
-		return await _repository.SaveChanges() > 0;
+		if (id == HttpContextHelper.UserId)
+		{
+			_repository.Articles.Delete(id);
+			 await _repository.SaveChanges();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		//}
 		//catch
 		//{
