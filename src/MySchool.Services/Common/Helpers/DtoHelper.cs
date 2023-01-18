@@ -66,6 +66,7 @@ public class DtoHelper : IDtoHelper
 	public async Task<Comment> ToEntity(CommentCreateDto dto)
 	{
 		Comment comment = dto;
+		comment.StudentId=HttpContextHelper.UserId;
 		return comment;
 	}
 }
