@@ -22,6 +22,7 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
+	
 		Article article = await _dtoHelper.ToEntity(dto);
 		_repository.Articles.Add(article);
 		My_School.Domain.Entities.Employees.Employee? employee = await _repository.Employees.FindByIdAsync(article.EmployeeId);
