@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Helpers;
 using MySchool.Services.Dtos.Comments;
 using MySchool.Services.Interfaces.Common;
 using MySchool.Services.Interfaces.Services;
@@ -21,7 +22,7 @@ public class CommentService : BasicService, ICommentService
 		//try
 		//{
 		_repository.Comments.Add(await _dtoHelper.ToEntity(dto));
-		My_School.Domain.Entities.Students.Student? student = await _repository.Students.FindByIdAsync(dto.StudentId);
+		My_School.Domain.Entities.Students.Student? student = await _repository.Students.FindByIdAsync(HttpContextHelper.UserId);
 		student.Acted = DateTime.Now;
 		_repository.Students.Update(student);
 		return await _repository.SaveChanges() > 0;

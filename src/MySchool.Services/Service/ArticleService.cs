@@ -3,6 +3,7 @@
 using My_School.Domain.Entities.Articles;
 
 using MySchool.DataAccess.Interfaces;
+using MySchool.Services.Common.Exceptions;
 using MySchool.Services.Common.Helpers;
 using MySchool.Services.Common.Utils;
 using MySchool.Services.Dtos.Articles;
@@ -41,7 +42,8 @@ public class ArticleService : BasicService, IArticleService
 	{
 		//try
 		//{
-		if (id == HttpContextHelper.UserId)
+		var employeeId = (await _repository.Articles.FindByIdAsync(id)).EmployeeId;
+		if (employeeId == HttpContextHelper.UserId || HttpContextHelper.UserRole == "Admin")
 		{
 			_repository.Articles.Delete(id);
 			 await _repository.SaveChanges();
@@ -49,7 +51,7 @@ public class ArticleService : BasicService, IArticleService
 		}
 		else
 		{
-			return false;
+			 throw new StatusCodeException(System.Net.HttpStatusCode.Forbidden,"It is not your article and you can not delete it");
 		}
 		//}
 		//catch
