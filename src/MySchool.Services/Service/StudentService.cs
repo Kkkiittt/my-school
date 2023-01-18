@@ -125,7 +125,7 @@ public class StudentService : BasicService, IStudentService
 
 	public async Task<IEnumerable<Student>> GetFullAsync(PaginationParams @params)
 	{
-		List<Student> page = await _repository.Students.GetAll().OrderByDescending(x => x.Acted).Skip((@params.PageNumber - 1) * @params.PageSize).Take(@params.PageSize).ToListAsync();
-		return page;
+		var page = await _paginator.ToPagedAsync(_repository.Students.GetAll().OrderByDescending(x => x.Acted), @params.PageNumber, @params.PageSize);
+		return page.Select(x => x);
 	}
 }

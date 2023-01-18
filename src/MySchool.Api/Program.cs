@@ -46,6 +46,10 @@ if(app.Environment.IsDevelopment())
 	_ = app.UseSwaggerUI();
 }
 
+if (app.Services.GetService<IHttpContextAccessor>() != null)
+	HttpContextHelper.Accessor = app.Services.GetRequiredService<IHttpContextAccessor>();
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
