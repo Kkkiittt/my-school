@@ -19,21 +19,21 @@ public class EmployeeController : ControllerBase
 		_employeeService = employeeService;
 	}
 
-	[HttpPost("EmployeeRegister")]
+	[HttpPost("register")]
 	[AllowAnonymous]
 	public async Task<IActionResult> RegisterAsync([FromForm] EmployeeRegisterDto dto)
 	{
 		return Ok(await _employeeService.RegisterAsync(dto));
 	}
 
-	[HttpPost("EmployeeLogin")]
+	[HttpPost("login")]
 	[AllowAnonymous]
 	public async Task<IActionResult> LoginAsync([FromForm] EmployeeLoginDto dto)
 	{
 		return Ok(await _employeeService.LoginAsync(dto));
 	}
 
-	[HttpDelete("DeleteEmployee")]
+	[HttpDelete("")]
 	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
@@ -41,14 +41,14 @@ public class EmployeeController : ControllerBase
 	}
 
 
-	[HttpPut("MakeAuthor")]
+	[HttpPut("author/{id}")]
 	[Authorize(Roles = "Admin")]
 	public async Task<IActionResult> MakeAuthorAsync(long id)
 	{
 		return Ok(await _employeeService.MakeAuthor(id));
 	}
 
-	[HttpGet("GetEmployees")]
+	[HttpGet("")]
 	[Authorize(Roles = "Author, Teacher, Admin")]
 	public async Task<IActionResult> GetEmployeesAsync(int page = 1)
 	{

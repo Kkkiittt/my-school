@@ -17,14 +17,14 @@ public class ConfirmationController : ControllerBase
 		_confirmationService = confirmationService;
 	}
 
-	[HttpPost("SendCode")]
+	[HttpPost("send")]
 	[Authorize(Roles = "Author, Admin")]
 	public async Task<IActionResult> SendCode([FromForm] string email)
 	{
 		return Ok(await _confirmationService.SendCode(email));
 	}
 
-	[HttpPost("ConfirmCode")]
+	[HttpPost("confirm")]
 	[AllowAnonymous]
 	public async Task<IActionResult> ConfirmCode([FromForm] CodeConfirmDto dto)
 	{

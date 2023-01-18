@@ -18,7 +18,7 @@ public class CharterController : ControllerBase
 	{
 		_charterService = charterService;
 	}
-	[HttpPost("CharterCreate")]
+	[HttpPost("")]
 	[Authorize(Roles = "Author, Admin")]
 	public async Task<IActionResult> CreateAsync([FromForm] CharterCreateDto dto)
 	{
@@ -26,26 +26,26 @@ public class CharterController : ControllerBase
 
 	}
 
-	[HttpDelete("CharterDelete")]
+	[HttpDelete("")]
 	[Authorize(Roles = "Author, Admin")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
 		return Ok(await _charterService.DeleteByIdAsync(id));
 	}
 
-	[HttpGet("GetAllCharters")]
+	[HttpGet("all")]
 	[AllowAnonymous]
 	public async Task<IActionResult> GetAllAsync(int page = 1)
 			=> Ok(await _charterService.GetAll(new PaginationParams(page, _pageSize)));
 
-	[HttpGet("CharterGet")]
+	[HttpGet("{id}")]
 	[AllowAnonymous]
 	public async Task<IActionResult> GetById(long id)
 	{
 		return Ok(await _charterService.GetById(id));
 	}
 
-	[HttpGet("GetCharterByStudent")]
+	[HttpGet("student/{studentId}")]
 	[Authorize(Roles = "Teacher, Author, Admin")]
 	public async Task<IActionResult> GetByStudent(long studentId)
 	{

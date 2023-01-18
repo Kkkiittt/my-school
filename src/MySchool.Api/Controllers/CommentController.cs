@@ -17,21 +17,21 @@ public class CommentController : ControllerBase
 		_commentService = commentService;
 	}
 
-	[HttpPost("CommentCreate")]
+	[HttpPost("")]
 	[Authorize(Roles = "Student")]
 	public async Task<IActionResult> CreateAsync([FromForm] CommentCreateDto dto)
 	{
 		return Ok(await _commentService.CreateAsync(dto));
 	}
 
-	[HttpGet("GetCommentByArticle")]
+	[HttpGet("article/{articleId}")]
 	[AllowAnonymous]
 	public async Task<IActionResult> GetByArticleAsync(long articleId)
 	{
 		return Ok(await _commentService.GetByArticleAsync(articleId));
 	}
 
-	[HttpDelete("CommentDelete")]
+	[HttpDelete("{id}")]
 	[Authorize(Roles = "Author, Admin, Teacher")]
 	public async Task<IActionResult> DeleteByIdAsync(long id)
 	{
